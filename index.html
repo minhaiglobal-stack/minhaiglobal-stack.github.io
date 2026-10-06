@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SubAgent Business: phòng ban AI có kiểm soát cho doanh nghiệp</title>
+<meta name="description" content="Nhân sự AI trên máy anh/chị: dựng video, soạn nháp trả lời khách, được dựng để dừng chờ anh/chị duyệt trước khi đăng, gửi, chi tiền. Audit 15 phút miễn phí.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="SubAgent Business">
+<meta property="og:title" content="SubAgent Business: phòng ban AI có kiểm soát cho doanh nghiệp">
+<meta property="og:description" content="Tự động có kiểm soát: nhân sự AI dựng video, soạn nháp trả lời khách, được dựng để dừng lại chờ anh/chị duyệt trước khi đăng, gửi hay chi tiền. Audit quy trình 15 phút miễn phí.">
+<meta property="og:url" content="https://minhaiglobal-stack.github.io/">
+<!-- OG-IMAGE: tệp fb-anh-bia-1640x624.png phải nằm cùng thư mục gốc với index.html trên repo minhaiglobal-stack.github.io -->
+<meta property="og:image" content="https://minhaiglobal-stack.github.io/fb-anh-bia-1640x624.png">
+<meta property="og:image:width" content="1640">
+<meta property="og:image:height" content="624">
+<meta property="og:image:alt" content="SubAgent Business - Nhân sự AI có kiểm soát cho doanh nghiệp - Liên tục Tiến Lên">
+<meta name="theme-color" content="#1B4F72">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--nen:#f5f9fc;--chu:#17293a;--phu:#4f6273;--chinh:#1B4F72;--sang:#5DADE2;--vua:#2E86C1;--nhat:#EAF4FB;--nhan:#e8743b;--the:#fff;--vien:#d6e4ee;--xanh:#2E86C1}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--nen);color:var(--chu);line-height:1.65;font-size:17px}
+a{color:var(--vua)}
+.khung{max-width:1040px;margin:0 auto;padding:0 18px}
+section{padding:56px 0}
+h1{font-size:1.85rem;line-height:1.25;margin-bottom:14px;font-weight:800}
+h2{font-size:1.5rem;line-height:1.3;margin-bottom:10px;color:var(--chinh);font-weight:800}
+h3{font-size:1.08rem;margin-bottom:6px}
+.dan{color:var(--phu);margin-bottom:26px;max-width:680px}
+.nhan-nho{display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--vua);margin-bottom:8px}
+/* thanh trên */
+.dau{background:#fff;border-bottom:1px solid var(--vien);padding:10px 0;position:sticky;top:0;z-index:5}
+.dau .khung{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.thuong-hieu{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--chinh);text-decoration:none;font-size:1.05rem}
+.thuong-hieu span span{color:var(--vua)}
+.dau .nut-nho{background:var(--chinh);color:#fff;text-decoration:none;font-weight:700;font-size:.85rem;padding:8px 14px;border-radius:99px;white-space:nowrap}
+/* hero */
+.hero{background:radial-gradient(circle at 85% 20%,rgba(93,173,226,.55) 0%,transparent 50%),linear-gradient(160deg,var(--chinh) 0%,#21618C 100%);color:#fff;padding:44px 0 56px}
+.hero h1{color:#fff}
+.hero p{color:#e3f0f9;max-width:660px}
+.hero .khau-hieu{color:#bfe0f5;font-weight:700;margin-bottom:10px;display:inline-block}
+.hero .doi-tuong{margin:18px 0 26px;display:flex;flex-wrap:wrap;gap:8px}
+.hero .doi-tuong span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);border-radius:99px;padding:4px 12px;font-size:.86rem}
+.nut-nhom{display:flex;flex-direction:column;gap:10px}
+.nut{display:block;text-align:center;text-decoration:none;font-weight:700;padding:15px 22px;border-radius:12px;font-size:1rem;line-height:1.35}
+.nut small{display:block;font-weight:400;font-size:.85rem;opacity:.95}
+.nut-chinh{background:var(--nhan);color:#fff}
+.nut-phu{background:#fff;color:var(--chinh);border:2px solid #fff}
+.nut-vien{background:transparent;color:var(--chinh);border:2px solid var(--chinh)}
+.nut-tat{background:#eef2f5;color:#6b7c8a;border:2px dashed #b9c7d2;cursor:default}
+.nut:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid #ffd27a;outline-offset:2px}
+.ghi-chu-nho{font-size:.88rem;color:#cfe5f4;margin-top:12px}
+/* lưới thẻ */
+.luoi{display:grid;gap:14px}
+.the{background:var(--the);border:1px solid var(--vien);border-radius:14px;padding:20px}
+.the p{color:var(--phu)}
+.so{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--sang);color:#fff;font-weight:700;margin-bottom:10px}
+/* sơ đồ phòng ban */
+.so-do{background:var(--the);border:1px solid var(--vien);border-radius:14px;padding:20px;text-align:center}
+.o{border-radius:10px;padding:10px 12px;font-weight:600;font-size:.95rem}
+.o-chu{background:#fff4ec;border:2px solid var(--nhan)}
+.o-tong{background:var(--chinh);color:#fff;margin:0 auto;max-width:360px}
+.mui{color:var(--phu);font-size:1.2rem;line-height:1.6}
+.phong{display:grid;grid-template-columns:1fr;gap:8px;margin-top:4px}
+.o-phong{background:var(--nhat);border:1px solid #c4def0;text-align:left}
+.o-phong small{display:block;font-weight:400;color:var(--phu)}
+.o-kiem{background:#f1eefb;border:1px solid #d9d1f2;text-align:left}
+.o-kiem small{display:block;font-weight:400;color:var(--phu)}
+.bang-wrap{overflow-x:auto;margin-top:18px}
+.bang-cap{width:100%;min-width:520px;border-collapse:collapse;font-size:.93rem;background:var(--the)}
+.bang-cap caption{text-align:left;padding:0 0 8px;font-weight:700}
+.bang-cap th,.bang-cap td{padding:10px 12px;border-bottom:1px solid var(--vien);text-align:left;vertical-align:top}
+.bang-cap th{background:var(--nhat)}
+/* luồng demo */
+.luong{list-style:none;counter-reset:b;display:grid;gap:10px}
+.luong li{counter-increment:b;position:relative;background:var(--the);border:1px solid var(--vien);border-left:5px solid var(--sang);border-radius:10px;padding:14px 14px 14px 56px}
+.luong li::before{content:counter(b);position:absolute;left:14px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--chinh);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.luong li.dung{border-left-color:var(--nhan);background:#fff8f3}
+.luong li.dung::before{background:var(--nhan)}
+.luong span{display:block;color:var(--phu);font-size:.93rem}
+.man-hinh{margin-top:18px;background:#0f2433;color:#d3e8f6;border-radius:12px;padding:16px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.8rem;overflow-x:auto;white-space:pre;line-height:1.55}
+.man-hinh .do{color:#ff9b85}.man-hinh .xanh{color:#8fd3ff}.man-hinh .xam{color:#7d98ab}
+/* an toàn */
+.an-toan{background:var(--nhat)}
+.trung-thuc{margin-top:18px;background:#fff;border:1px dashed var(--chinh);border-radius:12px;padding:16px;font-size:.95rem}
+/* giá */
+.goi{display:flex;flex-direction:column}
+.goi .ten-goi{font-size:1.1rem;font-weight:700;margin-bottom:4px}
+.goi .gia{font-size:1.45rem;font-weight:800;color:var(--chinh);margin:6px 0 4px}
+.goi .gia-phu{font-size:.88rem;color:var(--phu);margin-bottom:12px}
+.goi ul{list-style:none;margin-bottom:16px;flex:1}
+.goi li{padding:4px 0 4px 22px;position:relative;color:var(--phu)}
+.goi li::before{content:"";position:absolute;left:4px;top:13px;width:8px;height:8px;border-radius:50%;background:var(--xanh)}
+.goi.moi{border:2px solid var(--nhan)}
+.goi.chinh{border:2px solid var(--sang)}
+.goi .nhan-goi{display:inline-block;align-self:flex-start;background:var(--nhan);color:#fff;font-size:.75rem;font-weight:700;padding:2px 10px;border-radius:99px;margin-bottom:8px}
+.goi.chinh .nhan-goi{background:var(--vua)}
+.chinh-sach{margin-top:22px;background:#fff;border:1px solid var(--vien);border-radius:12px;padding:18px;font-size:.93rem;color:var(--phu)}
+.chinh-sach h3{color:var(--chinh)}
+.chinh-sach ul{padding-left:18px}
+.chinh-sach li{margin-bottom:6px}
+/* hỏi đáp */
+details{background:var(--the);border:1px solid var(--vien);border-radius:12px;padding:0 16px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:600;padding:15px 0;list-style:none;position:relative;padding-right:28px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:0;top:12px;font-size:1.3rem;color:var(--vua)}
+details[open] summary::after{content:"–"}
+details p{padding:0 0 16px;color:var(--phu)}
+/* CTA cuối */
+.cuoi{background:linear-gradient(160deg,var(--chinh) 0%,#21618C 100%);color:#fff;text-align:center}
+.cuoi h2{color:#fff}
+.cuoi p{color:#e3f0f9;margin:0 auto 22px;max-width:640px}
+.cuoi .nut-nhom{max-width:460px;margin:0 auto}
+.lien-he-nhanh{margin-top:22px;font-size:.95rem;color:#e3f0f9}
+.lien-he-nhanh a{color:#fff}
+.chan{padding:28px 0 40px;font-size:.88rem;color:var(--phu);background:#fff;border-top:1px solid var(--vien)}
+.chan p{margin-bottom:8px}
+.kenh{display:flex;flex-wrap:wrap;gap:8px 16px;margin:10px 0 14px;list-style:none}
+@media(min-width:720px){
+ h1{font-size:2.5rem}
+ h2{font-size:1.9rem}
+ section{padding:76px 0}
+ .hero{padding:76px 0 88px}
+ .nut-nhom{flex-direction:row;flex-wrap:wrap}
+ .cuoi .nut-nhom{max-width:none;justify-content:center}
+ .luoi-3{grid-template-columns:repeat(3,1fr)}
+ .luoi-2{grid-template-columns:repeat(2,1fr)}
+ .phong{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<header class="dau">
+ <div class="khung">
+  <a class="thuong-hieu" href="#" aria-label="SubAgent Business, về đầu trang">
+   <svg width="34" height="34" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><defs><linearGradient id="nen-logo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5DADE2"/><stop offset="1" stop-color="#1F6FA8"/></linearGradient></defs><rect width="200" height="200" rx="46" fill="url(#nen-logo)"/><g stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".9"><line x1="100" y1="96" x2="52" y2="146"/><line x1="100" y1="96" x2="100" y2="156"/><line x1="100" y1="96" x2="148" y2="146"/></g><circle cx="100" cy="92" r="24" fill="#fff"/><circle cx="52" cy="148" r="14" fill="#fff"/><circle cx="100" cy="158" r="14" fill="#fff"/><circle cx="148" cy="148" r="14" fill="#fff"/><path d="M82 52 L100 32 L118 52" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+   <span>SubAgent <span>Business</span></span>
+  </a>
+  <a class="nut-nho" href="#lien-he">Đặt lịch Audit</a>
+ </div>
+</header>
+
+<main>
+
+<!-- 1. HERO -->
+<section class="hero">
+ <div class="khung">
+  <span class="khau-hieu">Giải pháp SubAgent Business · Liên tục Tiến Lên</span>
+  <h1>Phòng ban AI làm việc lặp lại, được dựng để dừng chờ anh/chị duyệt</h1>
+  <p>Nhân sự AI chạy trên máy của anh/chị bằng Claude Code: dựng video dọc từ tư liệu có sẵn, soạn nháp trả lời tin nhắn khách. Quy trình được dựng để mỗi việc qua kiểm định chất lượng, rồi dừng lại chờ anh/chị duyệt trước khi đăng, gửi hay chi tiền.</p>
+  <div class="doi-tuong" aria-label="Phù hợp với">
+   <span>Shop online</span><span>Agency</span><span>Bất động sản</span><span>Spa, thẩm mỹ viện</span><span>Phòng khám, nha khoa</span><span>Trung tâm đào tạo</span><span>Nhà hàng, F&amp;B</span><span>Dịch vụ B2B</span>
+  </div>
+  <div class="nut-nhom">
+   <a class="nut nut-chinh" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Đặt lịch Audit quy trình miễn phí — gọi video 15 phút<small>Nhắn Zalo 0963124791</small></a>
+   <a class="nut nut-phu" href="#dung-thu">Xem bản dùng thử miễn phí</a>
+  </div>
+  <p class="ghi-chu-nho">Khung gọi 9:00–10:00, thứ Hai đến thứ Bảy. Mỗi tuần bên em chỉ nhận 5 suất; hết suất em hẹn anh/chị tuần sau. Sau buổi gọi, anh/chị có 3 việc nên tự động hóa trước.</p>
+ </div>
+</section>
+
+<!-- 2. NỖI ĐAU -->
+<section id="noi-dau">
+ <div class="khung">
+  <span class="nhan-nho">Anh/chị có thấy mình ở đây?</span>
+  <h2>Việc không khó, chỉ là lặp lại mỗi ngày và không ai làm kịp</h2>
+  <p class="dan">Ba tình huống chủ doanh nghiệp nhỏ thường gặp.</p>
+  <div class="luoi luoi-3">
+   <div class="the">
+    <div class="so">1</div>
+    <h3>Tin nhắn dồn, video chưa dựng</h3>
+    <p>Inbox Zalo, Facebook chờ trả lời, kênh TikTok cần video mới, mà người làm vẫn là anh/chị hoặc một hai nhân viên.</p>
+   </div>
+   <div class="the">
+    <div class="so">2</div>
+    <h3>Người nghỉ là quy trình gãy</h3>
+    <p>Cách làm nằm trong đầu từng người. Một người nghỉ phép hay nghỉ việc, cả luồng việc dừng lại hoặc làm lại từ đầu.</p>
+   </div>
+   <div class="the">
+    <div class="so">3</div>
+    <h3>Muốn dùng AI nhưng sợ nó tự làm bậy</h3>
+    <p>Sợ AI đăng nhầm bài, trả lời sai giá, làm lộ dữ liệu khách. Nên cuối cùng vẫn tự làm tay.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 3. GIẢI PHÁP -->
+<section id="giai-phap" style="background:#fff">
+ <div class="khung">
+  <span class="nhan-nho">Giải pháp</span>
+  <h2>Không phải một chatbot. Là một phòng ban AI có điều lệ.</h2>
+  <p class="dan">Công xưởng SubAgent tổ chức nhân sự AI như một công ty nhỏ: Agent Tổng điều hành, mỗi Agent con giữ một vai trò. Luật không chỉ nằm trong lời dặn: một khóa kỹ thuật (hook gác cổng) chặn các thao tác nguy hiểm đã được định nghĩa sẵn, như đọc vùng bí mật, sửa tệp quản trị, xóa dữ liệu.</p>
+
+  <div class="so-do" role="img" aria-label="Sơ đồ: Chủ giao việc cho Agent Tổng, Agent Tổng giao cho các Agent con, QA kiểm định, rồi chủ duyệt bước cuối">
+   <div class="o o-chu">Anh/chị (chủ sở hữu): giao việc và duyệt bước cuối</div>
+   <div class="mui">&#8595;</div>
+   <div class="o o-tong">Agent Tổng: nhận việc, giao đúng người, theo dõi</div>
+   <div class="mui">&#8595;</div>
+   <div class="phong">
+    <div class="o o-phong">Edit Video<small>Dựng video từ tư liệu của anh/chị</small></div>
+    <div class="o o-phong">CSKH soạn nháp<small>Nháp trả lời, đánh dấu ca cần chủ</small></div>
+    <div class="o o-kiem">QA kiểm định<small>Chấm theo tiêu chuẩn, lập biên bản</small></div>
+   </div>
+   <div class="mui">&#8595;</div>
+   <div class="o o-chu">Hàng chờ duyệt: dừng lại để anh/chị xem trước khi đăng / gửi</div>
+  </div>
+
+  <div class="bang-wrap">
+  <table class="bang-cap">
+   <caption>Ba cấp quy mô, chọn khi cài, nâng cấp sau được</caption>
+   <thead><tr><th scope="col">Cấp</th><th scope="col">Nhân sự AI</th><th scope="col">Hợp với</th></tr></thead>
+   <tbody>
+    <tr><td>1 · Tối giản</td><td>Agent Tổng, QA, Edit Video, CSKH soạn nháp (4 vị trí)</td><td>Người mới, 1 người vận hành</td></tr>
+    <tr><td>2 · Có kiểm soát</td><td>Thêm Kiểm toán nội bộ, Kiểm soát chi phí, Bảo mật (7 vị trí)</td><td>Đã chạy ổn 4 tuần, có dữ liệu khách</td></tr>
+    <tr><td>3 · Công ty đầy đủ</td><td>Thêm Pháp chế, Nhân sự Agent, Vận hành, Phân tích KPI (11 vị trí)</td><td>Nhiều luồng việc, xuất bản thường xuyên</td></tr>
+   </tbody>
+  </table>
+  </div>
+ </div>
+</section>
+
+<!-- 4. DEMO (luồng việc) -->
+<section id="demo">
+ <div class="khung">
+  <span class="nhan-nho">Một việc chạy thế nào</span>
+  <h2>Từ lúc anh/chị bỏ việc vào đến lúc anh/chị bấm đăng</h2>
+  <p class="dan">Quy trình 7 bước được dựng để việc nào cũng đi qua, và bước cuối dành cho anh/chị.</p>
+  <ol class="luong">
+   <li><strong>Anh/chị bỏ việc vào hộp nhận việc</strong><span>Ví dụ thư mục tư liệu video, hoặc tệp tin nhắn khách cần trả lời.</span></li>
+   <li><strong>Agent Tổng tạo job</strong><span>Hàng đợi nhận diện nguồn trùng nên một việc không bị làm hai lần.</span></li>
+   <li><strong>Kiểm tra quyền</strong><span>Đối chiếu bản đồ quyền: agent nào được ghi vào đâu, chạy lệnh gì.</span></li>
+   <li><strong>Giao đúng một Agent con</strong><span>Mỗi agent chỉ có một năng lực. Việc ngoài năng lực thì dừng và báo lại.</span></li>
+   <li><strong>QA chấm theo tiêu chuẩn đo được</strong><span>Có biên bản kèm bằng chứng. Không đạt thì giao sửa, có giới hạn số lần thử lại.</span></li>
+   <li><strong>Vào hàng chờ</strong><span>Video đã dựng và bản nháp trả lời khách nằm ở thư mục bàn giao trên máy anh/chị.</span></li>
+   <li class="dung"><strong>Dừng lại chờ anh/chị duyệt trước khi đăng / gửi</strong><span>Theo điều lệ và bản đồ quyền, agent không được gửi, đăng, chi tiền hay nhận lời thay anh/chị. Việc đăng và gửi do anh/chị tự làm.</span></li>
+  </ol>
+  <div class="man-hinh" aria-label="Minh họa: gác cổng chặn agent CSKH soạn nháp chạy lệnh">
+<span class="xam"># Minh họa: agent CSKH soạn nháp (không có quyền chạy lệnh) thử chạy một lệnh</span>
+<span class="do">GÁC CỔNG CHẶN:</span> Agent "cskh-soan-nhap" không có quyền chạy lệnh.
+<span class="xam"># Agent dừng lại và báo cáo, không tìm cách lách.</span>
+
+<span class="xam"># Minh họa: các lệnh của quy trình</span>
+<span class="xanh">node cong-cu/job.mjs tao --loai cskh --nguon hop-nhan-viec/cskh/inbox.json --mo-ta "Trả lời inbox"</span>
+<span class="xanh">node cong-cu/kiem-dinh-cskh.mjs ban-giao/nhap/&lt;job&gt;-cskh.json --job &lt;job&gt;</span>   <span class="xam"># QA chấm bản nháp</span>
+<span class="xanh">node cong-cu/kiem-tra.mjs</span>   <span class="xam"># chủ tự kiểm tra toàn hệ thống bất cứ lúc nào</span></div>
+  <p class="dan" style="margin-top:14px">Khối trên là minh họa bằng chữ. Muốn xem hệ thống chạy thật? Em demo trực tiếp trên màn hình trong buổi Audit 15 phút.</p>
+ </div>
+</section>
+
+<!-- 5. AN TOÀN -->
+<section id="an-toan" class="an-toan">
+ <div class="khung">
+  <span class="nhan-nho">An toàn và dữ liệu</span>
+  <h2>Tự động có kiểm soát: khóa bằng kỹ thuật, không chỉ bằng lời dặn</h2>
+  <p class="dan">Nhắc AI "đừng làm" là chưa đủ. Công xưởng đặt khóa ở tầng công cụ.</p>
+  <div class="luoi luoi-2">
+   <div class="the"><h3>Duyệt trước khi đăng, gửi</h3><p>Điều lệ và bản đồ quyền cấm agent đăng bài, gửi tin, chi tiền hay nhận lời thay chủ; việc đó do anh/chị tự làm. Agent CSKH chỉ soạn nháp và đánh dấu ca phải chuyển chủ như khiếu nại, hoàn tiền, giảm giá, dấu hiệu lừa AI.</p></div>
+   <div class="the"><h3>Hook gác cổng</h3><p>Kiểm tra từng thao tác trước khi agent làm, theo một bộ luật định sẵn. Chặn các thao tác nguy hiểm đã được định nghĩa, như đọc vùng bí mật, sửa tệp quản trị, lệnh xóa, các lệnh gửi dữ liệu ra ngoài phổ biến, cài phần mềm, chạy mã tải từ internet. Quyền riêng từng agent (ghi vào đâu, chạy lệnh gì) áp dụng khi Claude Code báo tên agent cho gác cổng; luật chung luôn áp dụng.</p></div>
+   <div class="the"><h3>Nút dừng khẩn</h3><p>Một lệnh trong terminal bật dừng khẩn: gác cổng hạ các agent về quyền chỉ đọc. Lệnh tắt dành cho chủ, chạy trong terminal riêng.</p></div>
+   <div class="the"><h3>Khóa bí mật</h3><p>Mật khẩu, khóa API chỉ chủ đặt vào thư mục bí mật trên máy; gác cổng chặn các thao tác đọc thư mục này. Gói không nhúng khóa API nào.</p></div>
+   <div class="the"><h3>Nhật ký chuỗi băm</h3><p>Mỗi thao tác được ghi lại, chuỗi giống bí mật được che. Dòng sau móc vào dòng trước nên sửa hay xóa một dòng ở giữa sẽ bị lệnh kiểm tra phát hiện.</p></div>
+   <div class="the"><h3>Hàng đợi và tiêu chuẩn chất lượng</h3><p>Chống làm trùng, giới hạn số lần thử lại, và việc chỉ được coi là đạt khi có biên bản QA.</p></div>
+  </div>
+  <div class="trung-thuc">
+   <strong>Nói rõ về dữ liệu:</strong> công cụ và dữ liệu công xưởng nằm trên máy của anh/chị; gói không nhúng khóa API. Tuy vậy, nội dung mà agent đọc được vẫn được mô hình AI xử lý thông qua Claude Code, theo tài khoản Claude của chính anh/chị. Gác cổng là một lớp bảo vệ theo luật định sẵn, không phải lá chắn tuyệt đối. Anh/chị nên cân nhắc trước khi đưa dữ liệu nhạy cảm của khách vào hộp nhận việc; buổi Audit sẽ giúp chọn việc phù hợp.
+  </div>
+ </div>
+</section>
+
+<!-- 6. BẰNG CHỨNG: CƠ CHẾ KIỂM CHỨNG ĐƯỢC -->
+<section id="bang-chung" style="background:#fff">
+ <div class="khung">
+  <span class="nhan-nho">Xem tận mắt</span>
+  <h2>Chưa cần tin lời bên em: xem hệ thống chạy thật trong buổi gọi</h2>
+  <p class="dan">Bên em chưa đăng lời khen hay số liệu khách hàng. Thay vào đó, đây là những cơ chế anh/chị tự kiểm chứng được trên màn hình trong buổi Audit 15 phút, hoặc trên máy mình với bản dùng thử miễn phí cấp 1 đã có trên GitHub.</p>
+  <div class="luoi luoi-2">
+   <div class="the"><h3>Gác cổng chặn thao tác ngoài quyền</h3><p>Cho agent CSKH soạn nháp thử chạy một lệnh và xem gác cổng chặn lại.</p></div>
+   <div class="the"><h3>Hàng đợi chống trùng</h3><p>Đưa cùng một việc vào hai lần và xem hệ thống từ chối tạo job trùng.</p></div>
+   <div class="the"><h3>Biên bản QA</h3><p>Xem một biên bản kiểm định: tiêu chí nào đạt, tiêu chí nào trượt, bằng chứng đi kèm.</p></div>
+   <div class="the"><h3>Nhật ký chuỗi băm</h3><p>Xem lệnh kiểm tra phát hiện khi một dòng nhật ký bị sửa ngoài quy trình.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 7. GÓI VÀ GIÁ (theo kinh-doanh/bang-gia.json, cập nhật 2026-10-06) -->
+<section id="bang-gia">
+ <div class="khung">
+  <span class="nhan-nho">Gói và giá</span>
+  <h2>Bắt đầu miễn phí, chọn gói khi anh/chị đã thấy hợp</h2>
+  <p class="dan">Bảng giá chính thức. Giá các gói trả phí chưa gồm thuê bao Claude hằng tháng: anh/chị tự trả trực tiếp cho Anthropic, gói cá nhân từ khoảng 20 USD/tháng.</p>
+
+  <div class="luoi luoi-2">
+   <div class="the goi moi">
+    <span class="nhan-goi">Bắt đầu ở đây</span>
+    <div class="ten-goi">Audit quy trình 15 phút</div>
+    <div class="gia">Miễn phí</div>
+    <div class="gia-phu">9:00–10:00, thứ Hai đến thứ Bảy · 5 suất/tuần</div>
+    <ul><li>Gọi video 15 phút</li><li>3 việc nên tự động hóa trước</li></ul>
+    <a class="nut nut-chinh" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Đặt lịch Audit qua Zalo</a>
+   </div>
+   <div class="the goi" id="dung-thu">
+    <div class="ten-goi">Bản dùng thử cấp 1 (tự cài, 1 doanh nghiệp)</div>
+    <div class="gia">Miễn phí</div>
+    <div class="gia-phu">Đã có trên GitHub · cấp 1, 4 vị trí · anh/chị tự cài trên máy mình</div>
+    <ul><li>Tệp cài trên GitHub/Telegram</li><li>Hướng dẫn cài 3 bước</li></ul>
+    <!-- LINK-KIT: gắn 2026-10-06 sau khi chủ đẩy MIEN-PHI-KIT 1.0.0 lên GitHub -->
+    <a class="nut nut-vien" href="https://github.com/minhaiglobal-stack/subagent-mien-phi-kit" target="_blank" rel="noopener">Tải bản dùng thử miễn phí trên GitHub</a>
+   </div>
+   <div class="the goi">
+    <div class="ten-goi">Gói Khởi động (cài đặt cấp 1)</div>
+    <div class="gia">3.900.000đ</div>
+    <div class="gia-phu">Trả 100% trước buổi cài</div>
+    <ul><li>Cài trên 1 máy</li><li>Bộ agent cấp 1 (tối giản) của sản phẩm</li><li>1 buổi hướng dẫn</li><li>Bảo hành lỗi cài đặt 30 ngày</li></ul>
+    <a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Hỏi về gói Khởi động qua Zalo</a>
+   </div>
+   <div class="the goi chinh">
+    <span class="nhan-goi">Gói chính</span>
+    <div class="ten-goi">Gói Tăng trưởng (cấp 2 + đào tạo)</div>
+    <div class="gia">12.900.000đ</div>
+    <div class="gia-phu">Cọc 50%, phần còn lại sau buổi đào tạo thứ nhất</div>
+    <ul><li>Bộ agent cấp 2 (có kiểm soát)</li><li>Mẫu theo ngành</li><li>4 buổi đào tạo</li><li>Hỗ trợ 30 ngày</li><li>Bảo hành lỗi cài đặt 90 ngày</li></ul>
+    <a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Hỏi về gói Tăng trưởng qua Zalo</a>
+   </div>
+   <div class="the goi">
+    <div class="ten-goi">Gói Doanh nghiệp (cấp 3 + tùy biến)</div>
+    <div class="gia">Từ 35.000.000đ</div>
+    <div class="gia-phu">Báo giá chính xác theo dự án · thanh toán theo hợp đồng 50% - 30% - 20%</div>
+    <ul><li>Bộ agent cấp 3 (đầy đủ) + agent tùy biến theo ngành</li><li>Agent tùy biến</li><li>Hỗ trợ 90 ngày</li></ul>
+    <a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Nhận báo giá qua Zalo</a>
+   </div>
+  </div>
+
+  <div class="chinh-sach">
+   <h3>Chính sách rút gọn</h3>
+   <ul>
+    <li><strong>Thanh toán:</strong> chuyển khoản. Khởi động trả 100% trước buổi cài; Tăng trưởng cọc 50%, phần còn lại sau buổi đào tạo thứ nhất; Doanh nghiệp theo hợp đồng (50% - 30% - 20%).</li>
+    <li><strong>Hoàn phí:</strong> gói Khởi động được hoàn toàn bộ phí gói trong 7 ngày nếu công xưởng không chạy được trên máy anh/chị và bên em không khắc phục được. Gói Tăng trưởng hoàn phần buổi đào tạo chưa diễn ra. Không hoàn phí thuê bao Claude (anh/chị trả trực tiếp cho Anthropic).</li>
+    <li><strong>Bảo hành:</strong> sửa lỗi cài đặt miễn phí: Khởi động 30 ngày, Tăng trưởng 90 ngày, Doanh nghiệp theo hợp đồng.</li>
+    <li><strong>Giấy phép:</strong> thương mại, mỗi bản dùng cho 1 doanh nghiệp.</li>
+   </ul>
+  </div>
+ </div>
+</section>
+
+<!-- 8. HỎI ĐÁP -->
+<section id="hoi-dap" style="background:#fff">
+ <div class="khung">
+  <span class="nhan-nho">Hỏi đáp</span>
+  <h2>Câu hỏi thường gặp</h2>
+  <p class="dan">Những băn khoăn hay gặp nhất trước khi đưa nhân sự AI vào doanh nghiệp.</p>
+  <details>
+   <summary>Tôi không rành kỹ thuật, có dùng được không?</summary>
+   <p>Cài đặt có 3 bước, trình cài tự chạy kiểm tra hệ thống và báo "SẴN SÀNG" khi dùng được. Hằng ngày anh/chị làm việc bằng vài lệnh ngắn như /giao-viec, /bao-cao trong Claude Code. Gói Khởi động có buổi hướng dẫn; nên bắt đầu ở cấp 1 với 4 vị trí cho dễ làm quen.</p>
+  </details>
+  <details>
+   <summary>Nếu AI làm sai thì sao? Tôi sợ mất uy tín với khách.</summary>
+   <p>AI có thể sai, nên công xưởng được dựng để cái sai không đi thẳng ra ngoài: mỗi việc qua QA chấm theo tiêu chuẩn đo được, rồi nằm trong hàng chờ để anh/chị duyệt. Agent CSKH chỉ soạn nháp, và tự đánh dấu các ca khó như khiếu nại, hoàn tiền, giảm giá để chuyển cho anh/chị.</p>
+  </details>
+  <details>
+   <summary>Dữ liệu khách của tôi có bị lộ không?</summary>
+   <p>Công cụ và dữ liệu công xưởng nằm trên máy của anh/chị. Gác cổng chặn các thao tác đọc thư mục bí mật và các lệnh gửi dữ liệu ra ngoài phổ biến đã được định nghĩa; đây là một lớp bảo vệ, không phải lá chắn tuyệt đối. Em cần nói rõ: nội dung agent đọc được vẫn được mô hình AI xử lý qua Claude Code theo tài khoản của anh/chị. Vì vậy hãy chọn kỹ dữ liệu đưa vào; buổi Audit sẽ cùng anh/chị xem việc nào nên giao.</p>
+  </details>
+  <details>
+   <summary>Ngoài giá gói, tôi còn trả khoản nào nữa?</summary>
+   <p>Có thuê bao Claude hằng tháng, anh/chị tự trả trực tiếp cho Anthropic (gói cá nhân từ khoảng 20 USD/tháng). Khoản này không nằm trong giá gói và không được hoàn. Gói không kèm khóa API nào.</p>
+  </details>
+  <details>
+   <summary>Có tốn tiền mà không hiệu quả không?</summary>
+   <p>Anh/chị có thể bắt đầu bằng buổi Audit 15 phút miễn phí để biết 3 việc đáng tự động hóa trước, rồi bắt đầu nhỏ với bản dùng thử miễn phí cấp 1 (4 vị trí) và chỉ nâng cấp khi đã chạy ổn. Gói Khởi động có chính sách hoàn phí trong 7 ngày nếu công xưởng không chạy được trên máy anh/chị và bên em không khắc phục được.</p>
+  </details>
+  <details>
+   <summary>Máy tôi cần cài gì?</summary>
+   <p>Node.js 18 trở lên (khuyên bản 22 LTS) và Claude Code. FFmpeg khi dùng agent video. Trên Windows cần thêm Git Bash. Có hướng dẫn cho macOS, Windows và Linux. Công cụ chỉ dùng thư viện có sẵn của Node.js, không cần cài thêm gói.</p>
+  </details>
+  <details>
+   <summary>Nhân sự AI làm phần nào, người trong đội làm phần nào?</summary>
+   <p>Nhân sự AI nhận phần việc lặp lại như dựng video, soạn nháp trả lời khách, kiểm tra theo tiêu chuẩn. Người trong đội của anh/chị vẫn là người quyết định, duyệt và giữ quan hệ với khách.</p>
+  </details>
+  <details>
+   <summary>Muốn dừng ngay thì làm thế nào?</summary>
+   <p>Chạy lệnh dừng khẩn trong terminal: gác cổng hạ các agent về quyền chỉ đọc cho tới khi anh/chị tắt.</p>
+  </details>
+ </div>
+</section>
+
+<!-- 9. CTA CUỐI + LIÊN HỆ -->
+<section id="lien-he" class="cuoi">
+ <div class="khung">
+  <h2>15 phút để biết doanh nghiệp anh/chị nên giao việc gì cho AI trước</h2>
+  <p>Nhắn Zalo 0963124791 để đặt lịch Audit quy trình miễn phí. Gọi video 15 phút trong khung 9:00–10:00, thứ Hai đến thứ Bảy; mỗi tuần bên em chỉ nhận 5 suất. Anh/chị nhận 3 việc nên tự động hóa trước và xem hệ thống chạy thật.</p>
+  <div class="nut-nhom">
+   <a class="nut nut-chinh" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Đặt lịch Audit quy trình miễn phí — gọi video 15 phút<small>Nhắn Zalo 0963124791</small></a>
+  </div>
+  <p class="lien-he-nhanh">Hoặc liên hệ: điện thoại <a href="tel:+84963124791">0963124791</a> · Telegram: số 0963124791 · Email <a href="mailto:minhaiglobal@gmail.com">minhaiglobal@gmail.com</a></p>
+ </div>
+</section>
+
+</main>
+
+<footer class="chan">
+ <div class="khung">
+  <p><strong>Giải pháp SubAgent Business</strong> · Liên tục Tiến Lên</p>
+  <p>Liên hệ: Zalo <a href="https://zalo.me/0963124791" target="_blank" rel="noopener">0963124791</a> · Telegram: 0963124791 · Điện thoại <a href="tel:+84963124791">0963124791</a> · Email <a href="mailto:minhaiglobal@gmail.com">minhaiglobal@gmail.com</a></p>
+  <ul class="kenh" aria-label="Kênh của SubAgent Business">
+   <li><a href="https://www.facebook.com/profile.php?id=61595252995765" target="_blank" rel="noopener">Fanpage Facebook</a></li>
+   <li><a href="https://www.youtube.com/@subagentbusiness" target="_blank" rel="noopener">YouTube</a></li>
+   <li><a href="https://www.tiktok.com/@camsellerai" target="_blank" rel="noopener">TikTok</a></li>
+   <li><a href="https://github.com/minhaiglobal-stack" target="_blank" rel="noopener">GitHub</a></li>
+  </ul>
+  <p>Dữ liệu cá nhân: trang này không có biểu mẫu, không dùng cookie, không gắn mã theo dõi hay quảng cáo và không thu thập dữ liệu của anh/chị. Trang chỉ tải phông chữ Be Vietnam Pro từ Google Fonts. Thông tin anh/chị gửi qua Zalo, Telegram hoặc email chỉ dùng để đặt lịch và tư vấn; vui lòng không gửi mật khẩu hay khóa API.</p>
+ </div>
+</footer>
+
+</body>
+</html>
