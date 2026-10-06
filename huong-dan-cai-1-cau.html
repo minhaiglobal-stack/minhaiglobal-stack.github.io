@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Công xưởng SubAgent — Cài trong 1 câu</title>
+<meta name="description" content="Hướng dẫn in A4: cài bản dùng thử Công xưởng SubAgent bằng 1 câu với ứng dụng Claude trên Windows 10/11, lỗi thường gặp và lưu ý an toàn.">
+<!-- Tệp nguồn để in PDF huong-dan-cai-1-cau.pdf (khổ A4 dọc). Mở bằng trình duyệt > In > Lưu thành PDF, bật "Đồ họa nền". Áp dụng bản dùng thử 1.1.0. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+@page{size:A4 portrait;margin:10mm 12mm}
+:root{--chinh:#1B4F72;--sang:#5DADE2;--vua:#2E86C1;--nhat:#EAF4FB;--chu:#17293a;--phu:#4f6273;--vien:#d6e4ee;--nhan:#e8743b}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:"Be Vietnam Pro",system-ui,"Segoe UI",Arial,sans-serif;color:var(--chu);font-size:9.2pt;line-height:1.36;background:#e9eef2}
+.trang{background:#fff;max-width:210mm;margin:0 auto;padding:12mm}
+@media print{body{background:#fff}.trang{max-width:none;margin:0;padding:0}}
+@media screen and (max-width:600px){.trang{padding:16px}.hai-cot,.chan{grid-template-columns:1fr!important}}
+.dau{display:flex;align-items:center;gap:10px;background:linear-gradient(160deg,var(--chinh) 0%,#21618C 100%);color:#fff;border-radius:8px;padding:7px 14px}
+.dau svg{flex:none}
+.dau h1{font-size:14.5pt;line-height:1.2;font-weight:800}
+.dau .khau-hieu{color:#bfe0f5;font-weight:700;font-size:9pt;margin-top:1px}
+.dan{margin:6px 0 0;color:var(--phu)}
+h2{font-size:10.5pt;color:var(--chinh);font-weight:800;margin:7px 0 3px;padding-bottom:1px;border-bottom:2px solid var(--sang);break-after:avoid;page-break-after:avoid}
+ul{padding-left:16px}
+li{margin-bottom:1px}
+/* URL không bao giờ bị ngắt dòng (tránh trình đọc PDF ghép mất dấu gạch nối khi chép) */
+.url{white-space:nowrap;word-break:normal;overflow-wrap:normal;hyphens:none}
+.url-dong{display:block;margin:2px 0}
+/* Cần chuẩn bị: gộp thành một dải gọn */
+.chuan-bi{list-style:none;padding:5px 10px;background:var(--nhat);border:1px solid #c4def0;border-radius:6px;font-size:8.8pt}
+.chuan-bi li{display:inline;margin:0}
+.chuan-bi li+li::before{content:" · ";color:var(--vua);font-weight:700}
+.chuan-bi strong{color:var(--chinh)}
+.chuan-bi strong::after{content:": "}
+.buoc{list-style:none;counter-reset:b;padding:0}
+.buoc li{counter-increment:b;position:relative;padding:2px 0 3px 30px;margin:0}
+.buoc li::before{content:counter(b);position:absolute;left:0;top:2px;width:21px;height:21px;border-radius:50%;background:var(--chinh);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:9pt}
+.cau-chuan{margin:4px 0 2px;background:var(--nhat);border:2px dashed var(--vua);border-radius:6px;padding:5px 10px;font-family:Consolas,ui-monospace,Menlo,monospace;font-size:9.3pt;line-height:1.4;overflow-x:auto}
+.goi-y{font-size:8.5pt;color:var(--phu)}
+.hai-cot{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.khoi-an-toan{break-inside:avoid;page-break-inside:avoid}
+.loi li,.hai-cot li{font-size:8.8pt}
+.loi strong{color:var(--chu)}
+.an-toan{background:#fff8f3;border-left:4px solid var(--nhan);border-radius:6px;padding:4px 10px;margin-top:2px}
+.an-toan li{font-size:8.8pt}
+/* Chân trang: 2 cột, cột trái co theo độ dài URL để URL không bị ngắt */
+.chan{display:grid;grid-template-columns:max-content 1fr;gap:2px 14px;margin-top:6px;border-top:1px solid var(--vien);padding-top:5px;font-size:8.5pt;color:var(--phu);break-inside:avoid;page-break-inside:avoid}
+.chan p{margin:0}
+.chan strong{color:var(--chinh)}
+a{color:var(--vua);text-decoration:none}
+h2,.buoc li,.loi li,.an-toan{break-inside:avoid;page-break-inside:avoid}
+</style>
+</head>
+<body>
+<div class="trang">
+
+<header class="dau">
+ <svg width="36" height="36" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><defs><linearGradient id="nen-logo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5DADE2"/><stop offset="1" stop-color="#1F6FA8"/></linearGradient></defs><rect width="200" height="200" rx="46" fill="url(#nen-logo)"/><g stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".9"><line x1="100" y1="96" x2="52" y2="146"/><line x1="100" y1="96" x2="100" y2="156"/><line x1="100" y1="96" x2="148" y2="146"/></g><circle cx="100" cy="92" r="24" fill="#fff"/><circle cx="52" cy="148" r="14" fill="#fff"/><circle cx="100" cy="158" r="14" fill="#fff"/><circle cx="148" cy="148" r="14" fill="#fff"/><path d="M82 52 L100 32 L118 52" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div>
+  <h1>Công xưởng SubAgent — Cài trong 1 câu</h1>
+  <div class="khau-hieu">Kỷ Nguyên Vươn Mình. Liên Tục Tiến Lên!</div>
+ </div>
+</header>
+
+<p class="dan">Hướng dẫn cài bản dùng thử miễn phí cấp 1 (4 vị trí) từ phiên bản 1.1.0. Không cần gõ lệnh: Claude tự kiểm tra máy, tải bộ công xưởng và cài đặt; anh/chị chỉ cần xác nhận khi được hỏi.</p>
+
+<h2>Cần chuẩn bị</h2>
+<ul class="chuan-bi">
+ <li><strong>Máy Windows 10/11</strong>Hướng dẫn này viết cho Windows.</li>
+ <li><strong>Ứng dụng Claude + gói trả phí</strong>Tải tại claude.ai/download. Anh/chị tự đăng nhập, tự trả thuê bao cho Anthropic.</li>
+ <li><strong>Kết nối internet</strong>Để tải bộ công xưởng và phần mềm cần thiết.</li>
+</ul>
+
+<h2>3 bước cài đặt</h2>
+<ol class="buoc">
+ <li><strong>Cài ứng dụng Claude bản máy tính và đăng nhập.</strong> Dùng tài khoản Claude gói trả phí của anh/chị; việc đăng nhập anh/chị tự làm.</li>
+ <li><strong>Mở tab Code, chọn một thư mục trống.</strong> Ví dụ tạo thư mục D:\SubAgent rồi chọn thư mục đó trong ứng dụng.</li>
+ <li><strong>Dán câu dưới đây, điền tên công ty và tên anh/chị vào chỗ ___.</strong> Khi Claude hỏi, đọc nội dung rồi trả lời đồng ý và bấm Cho phép.
+  <div class="cau-chuan">Cài bản dùng thử Công xưởng SubAgent từ <span class="url url-dong">https://github.com/minhaiglobal-stack/subagent-mien-phi-kit</span> vào thư mục này. Tên công ty tôi là ___, tên tôi là ___.</div>
+  <p class="goi-y">Bản chép sẵn có trên trang <span class="url">https://minhaiglobal-stack.github.io/</span> (mục "Cài trong 1 câu").</p>
+ </li>
+</ol>
+
+<div class="hai-cot">
+ <section>
+  <h2>Claude sẽ tự làm gì</h2>
+  <ul>
+   <li>Kiểm tra máy: Windows, Node.js, Git, FFmpeg.</li>
+   <li>Nếu thiếu Node.js, Git hoặc FFmpeg: đề xuất lệnh cài từ nguồn chính thức, chờ anh/chị đồng ý và bấm Cho phép.</li>
+   <li>Tải bộ công xưởng từ đúng địa chỉ GitHub trong câu cài.</li>
+   <li>Chạy trình cài với tên công ty và tên anh/chị, rồi tự kiểm tra hệ thống.</li>
+   <li>Báo <strong>✅ SẴN SÀNG</strong> khi dùng được.</li>
+   <li>Hướng dẫn mở một phiên mới trong thư mục này và gõ <strong>/khoi-dong</strong> để Agent Tổng kiểm kê.</li>
+  </ul>
+ </section>
+ <section>
+  <h2>Lỗi thường gặp</h2>
+  <ul class="loi">
+   <li><strong>Báo thiếu FFmpeg:</strong> agent dựng video chưa chạy được, các phần khác vẫn dùng được. Đồng ý cài FFmpeg khi Claude đề xuất.</li>
+   <li><strong>Claude báo chưa nhận Node.js/Git vừa cài:</strong> thoát hẳn ứng dụng Claude (cả biểu tượng ở khay hệ thống), mở lại, chọn đúng thư mục và dán lại câu cài.</li>
+   <li><strong>Thư mục không trống:</strong> Claude dừng và không xóa tệp nào. Tạo một thư mục trống mới rồi làm lại bước 2–3.</li>
+   <li><strong>Chưa có gói trả phí:</strong> tab Code cần tài khoản Claude trả phí. Nâng cấp tài khoản trong ứng dụng Claude rồi làm lại.</li>
+   <li><strong>Lỗi quyền ghi (access denied):</strong> chọn thư mục khác, ví dụ D:\SubAgent, tránh thư mục đang đồng bộ OneDrive.</li>
+  </ul>
+ </section>
+</div>
+
+<section class="khoi-an-toan">
+<h2>An toàn</h2>
+<div class="an-toan">
+ <ul>
+  <li><strong>Duyệt trước khi đăng, gửi:</strong> agent chỉ soạn nháp; đăng bài, gửi tin, chi tiền là việc anh/chị tự làm.</li>
+  <li><strong>Chạy trên máy anh/chị:</strong> công cụ và dữ liệu công xưởng nằm trên máy, bộ không nhúng khóa API. Nội dung agent đọc được vẫn được mô hình AI xử lý qua Claude Code theo tài khoản Claude của anh/chị.</li>
+  <li><strong>Nhật ký:</strong> mỗi thao tác được ghi lại; dòng nhật ký bị sửa ngoài quy trình sẽ bị lệnh kiểm tra phát hiện.</li>
+  <li>Không dán mật khẩu, mã OTP hay khóa API vào cửa sổ Claude.</li>
+ </ul>
+</div>
+</section>
+
+<footer class="chan">
+ <p><strong>Trang giới thiệu:</strong> <span class="url">https://minhaiglobal-stack.github.io/</span></p>
+ <p><strong>Audit quy trình 15 phút miễn phí:</strong> gọi video qua Zalo/Telegram 0963124791, 9:00–10:00, thứ Hai đến thứ Bảy.</p>
+ <p><strong>GitHub:</strong> <span class="url">https://github.com/minhaiglobal-stack/subagent-mien-phi-kit</span></p>
+ <p>Giải pháp SubAgent Business · Email minhaiglobal@gmail.com</p>
+</footer>
+
+</div>
+</body>
+</html>

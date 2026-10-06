@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://minhaiglobal-stack.github.io/fb-anh-bia-1640x624.png">
 <meta property="og:image:width" content="1640">
 <meta property="og:image:height" content="624">
-<meta property="og:image:alt" content="SubAgent Business - Nhân sự AI có kiểm soát cho doanh nghiệp - Liên tục Tiến Lên">
+<meta property="og:image:alt" content="SubAgent Business - Nhân sự AI có kiểm soát cho doanh nghiệp - Kỷ Nguyên Vươn Mình. Liên Tục Tiến Lên!">
 <meta name="theme-color" content="#1B4F72">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -104,6 +104,16 @@ h3{font-size:1.08rem;margin-bottom:6px}
 .chinh-sach h3{color:var(--chinh)}
 .chinh-sach ul{padding-left:18px}
 .chinh-sach li{margin-bottom:6px}
+/* cài trong 1 câu */
+.cai-1-cau{margin-top:22px;background:#fff;border:2px solid var(--sang);border-radius:14px;padding:20px}
+.cai-1-cau h3{color:var(--chinh);font-size:1.2rem}
+.cai-1-cau ol{list-style:none;counter-reset:c;display:grid;gap:10px;margin:14px 0}
+.cai-1-cau ol li{counter-increment:c;position:relative;padding-left:42px;color:var(--phu)}
+.cai-1-cau ol li::before{content:counter(c);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--chinh);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.cai-1-cau ol li strong{color:var(--chu)}
+.cau-chuan{display:block;background:var(--nhat);border:2px dashed var(--vua);border-radius:10px;padding:14px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92rem;line-height:1.6;color:var(--chu);word-break:break-word;user-select:all;-webkit-user-select:all;cursor:text}
+.cai-1-cau .goi-y{font-size:.86rem;color:var(--phu);margin:6px 0 14px}
+.cai-1-cau .luu-y{font-size:.9rem;background:#fff8f3;border-left:4px solid var(--nhan);padding:10px 12px;border-radius:6px;margin-bottom:14px;color:var(--chu)}
 /* hỏi đáp */
 details{background:var(--the);border:1px solid var(--vien);border-radius:12px;padding:0 16px;margin-bottom:10px}
 summary{cursor:pointer;font-weight:600;padding:15px 0;list-style:none;position:relative;padding-right:28px}
@@ -151,7 +161,7 @@ details p{padding:0 0 16px;color:var(--phu)}
 <!-- 1. HERO -->
 <section class="hero">
  <div class="khung">
-  <span class="khau-hieu">Giải pháp SubAgent Business · Liên tục Tiến Lên</span>
+  <span class="khau-hieu">Giải pháp SubAgent Business · Kỷ Nguyên Vươn Mình. Liên Tục Tiến Lên!</span>
   <h1>Phòng ban AI làm việc lặp lại, được dựng để dừng chờ anh/chị duyệt</h1>
   <p>Nhân sự AI chạy trên máy của anh/chị bằng Claude Code: dựng video dọc từ tư liệu có sẵn, soạn nháp trả lời tin nhắn khách. Quy trình được dựng để mỗi việc qua kiểm định chất lượng, rồi dừng lại chờ anh/chị duyệt trước khi đăng, gửi hay chi tiền.</p>
   <div class="doi-tuong" aria-label="Phù hợp với">
@@ -312,6 +322,7 @@ details p{padding:0 0 16px;color:var(--phu)}
     <ul><li>Tệp cài trên GitHub/Telegram</li><li>Hướng dẫn cài 3 bước</li></ul>
     <!-- LINK-KIT: gắn 2026-10-06 sau khi chủ đẩy MIEN-PHI-KIT 1.0.0 lên GitHub -->
     <a class="nut nut-vien" href="https://github.com/minhaiglobal-stack/subagent-mien-phi-kit" target="_blank" rel="noopener">Tải bản dùng thử miễn phí trên GitHub</a>
+    <p style="font-size:.88rem;margin-top:10px;text-align:center"><a href="#cai-1-cau">Hoặc xem mục Cài trong 1 câu</a></p>
    </div>
    <div class="the goi">
     <div class="ten-goi">Gói Khởi động (cài đặt cấp 1)</div>
@@ -335,6 +346,22 @@ details p{padding:0 0 16px;color:var(--phu)}
     <ul><li>Bộ agent cấp 3 (đầy đủ) + agent tùy biến theo ngành</li><li>Agent tùy biến</li><li>Hỗ trợ 90 ngày</li></ul>
     <a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Nhận báo giá qua Zalo</a>
    </div>
+  </div>
+
+  <!-- CÀI TRONG 1 CÂU: áp dụng bản dùng thử từ 1.1.0; câu chuẩn lấy y nguyên từ san-pham/mien-phi-kit/CAI-DAT-1-CAU.md -->
+  <div class="cai-1-cau" id="cai-1-cau">
+   <span class="nhan-nho">Bản dùng thử · không cần gõ lệnh</span>
+   <h3>Cài trong 1 câu</h3>
+   <p class="dan" style="margin-bottom:0">Claude tự kiểm tra máy, tải bộ công xưởng và cài đặt; anh/chị chỉ bấm Cho phép khi được hỏi.</p>
+   <ol>
+    <li><strong>Cài ứng dụng Claude bản máy tính</strong> (claude.ai/download) và tự đăng nhập tài khoản Claude gói trả phí của anh/chị.</li>
+    <li><strong>Mở tab Code</strong> trong ứng dụng, chọn một thư mục trống, ví dụ D:\SubAgent.</li>
+    <li><strong>Dán câu dưới đây</strong>, điền tên công ty và tên anh/chị vào chỗ ___, rồi bấm Cho phép khi Claude hỏi.</li>
+   </ol>
+   <code class="cau-chuan">Cài bản dùng thử Công xưởng SubAgent từ https://github.com/minhaiglobal-stack/subagent-mien-phi-kit vào thư mục này. Tên công ty tôi là ___, tên tôi là ___.</code>
+   <p class="goi-y">Chạm hoặc bấm vào khung để chọn cả câu, rồi sao chép (Ctrl+C).</p>
+   <p class="luu-y"><strong>Cần tài khoản Claude trả phí riêng:</strong> anh/chị tự đăng nhập và tự trả thuê bao trực tiếp cho Anthropic; bản dùng thử không kèm tài khoản hay khóa API nào. Hướng dẫn viết cho Windows 10/11.</p>
+   <a class="nut nut-vien" href="huong-dan-cai-1-cau.pdf" target="_blank" rel="noopener">Tải hướng dẫn cài (PDF)</a>
   </div>
 
   <div class="chinh-sach">
@@ -377,7 +404,7 @@ details p{padding:0 0 16px;color:var(--phu)}
   </details>
   <details>
    <summary>Máy tôi cần cài gì?</summary>
-   <p>Node.js 18 trở lên (khuyên bản 22 LTS) và Claude Code. FFmpeg khi dùng agent video. Trên Windows cần thêm Git Bash. Có hướng dẫn cho macOS, Windows và Linux. Công cụ chỉ dùng thư viện có sẵn của Node.js, không cần cài thêm gói.</p>
+   <p>Node.js 18 trở lên (khuyên bản 22 LTS) và Claude Code. FFmpeg khi dùng agent video. Trên Windows cần thêm Git Bash. Có hướng dẫn cho macOS, Windows và Linux. Công cụ chỉ dùng thư viện có sẵn của Node.js, không cần cài thêm gói. Nếu cài bản dùng thử theo cách <a href="#cai-1-cau">Cài trong 1 câu</a>, Claude kiểm tra máy và đề xuất cài Node.js, Git, FFmpeg khi thiếu; anh/chị bấm Cho phép thì mới cài.</p>
   </details>
   <details>
    <summary>Nhân sự AI làm phần nào, người trong đội làm phần nào?</summary>
@@ -406,7 +433,7 @@ details p{padding:0 0 16px;color:var(--phu)}
 
 <footer class="chan">
  <div class="khung">
-  <p><strong>Giải pháp SubAgent Business</strong> · Liên tục Tiến Lên</p>
+  <p><strong>Giải pháp SubAgent Business</strong> · Kỷ Nguyên Vươn Mình. Liên Tục Tiến Lên!</p>
   <p>Liên hệ: Zalo <a href="https://zalo.me/0963124791" target="_blank" rel="noopener">0963124791</a> · Telegram: 0963124791 · Điện thoại <a href="tel:+84963124791">0963124791</a> · Email <a href="mailto:minhaiglobal@gmail.com">minhaiglobal@gmail.com</a></p>
   <ul class="kenh" aria-label="Kênh của SubAgent Business">
    <li><a href="https://www.facebook.com/profile.php?id=61595252995765" target="_blank" rel="noopener">Fanpage Facebook</a></li>
