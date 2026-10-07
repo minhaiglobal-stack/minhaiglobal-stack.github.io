@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sàn Skill SubAgent: skill tiếng Việt cho Claude, dùng ngay</title>
+<meta name="description" content="Skill tiếng Việt cho Claude dành cho shop và doanh nghiệp: 5 skill miễn phí, skill lẻ 129.000đ, gói 10 skill 299.000đ. Skill chỉ soạn nháp, anh/chị duyệt.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="SubAgent Business">
+<meta property="og:title" content="Sàn Skill SubAgent: skill tiếng Việt cho Claude, dùng ngay">
+<meta property="og:description" content="5 skill miễn phí, skill lẻ 129.000đ, gói 10 skill 299.000đ cho shop online, tạo ảnh, tạo video. Skill chỉ soạn nháp, không tự đăng hay gửi thay anh/chị.">
+<meta property="og:url" content="https://minhaiglobal-stack.github.io/skill/">
+<!-- OG-IMAGE: dùng chung ảnh bìa ở thư mục gốc repo minhaiglobal-stack.github.io (../fb-anh-bia-1640x624.png) -->
+<meta property="og:image" content="https://minhaiglobal-stack.github.io/fb-anh-bia-1640x624.png">
+<meta property="og:image:width" content="1640">
+<meta property="og:image:height" content="624">
+<meta property="og:image:alt" content="SubAgent Business - Kỷ Nguyên Vươn Mình. Liên Tục Tiến Lên!">
+<meta name="theme-color" content="#1B4F72">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--nen:#f5f9fc;--chu:#17293a;--phu:#4f6273;--chinh:#1B4F72;--sang:#5DADE2;--vua:#2E86C1;--nhat:#EAF4FB;--nhan:#e8743b;--the:#fff;--vien:#d6e4ee}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--nen);color:var(--chu);line-height:1.65;font-size:17px}
+a{color:var(--vua)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;background:var(--nhat);padding:1px 5px;border-radius:5px;word-break:break-all}
+.khung{max-width:1040px;margin:0 auto;padding:0 18px}
+section{padding:56px 0}
+h1{font-size:1.8rem;line-height:1.25;margin-bottom:14px;font-weight:800}
+h2{font-size:1.5rem;line-height:1.3;margin-bottom:10px;color:var(--chinh);font-weight:800}
+h3{font-size:1.08rem;margin-bottom:6px}
+.dan{color:var(--phu);margin-bottom:26px;max-width:700px}
+.nhan-nho{display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--vua);margin-bottom:8px}
+/* thanh trên */
+.dau{background:#fff;border-bottom:1px solid var(--vien);padding:10px 0;position:sticky;top:0;z-index:5}
+.dau .khung{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.thuong-hieu{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--chinh);text-decoration:none;font-size:1.05rem}
+.thuong-hieu span span{color:var(--vua)}
+.dieu-huong{display:flex;align-items:center;gap:12px}
+.dieu-huong .ve-chu{font-size:.88rem;font-weight:600;text-decoration:none;color:var(--chinh);white-space:nowrap}
+.dau .nut-nho{background:var(--chinh);color:#fff;text-decoration:none;font-weight:700;font-size:.85rem;padding:8px 14px;border-radius:99px;white-space:nowrap}
+/* hero */
+.hero{background:radial-gradient(circle at 85% 20%,rgba(93,173,226,.55) 0%,transparent 50%),linear-gradient(160deg,var(--chinh) 0%,#21618C 100%);color:#fff;padding:44px 0 56px}
+.hero h1{color:#fff}
+.hero p{color:#e3f0f9;max-width:680px}
+.hero .khau-hieu{color:#bfe0f5;font-weight:700;margin-bottom:10px;display:inline-block}
+.hero .doi-tuong{margin:18px 0 26px;display:flex;flex-wrap:wrap;gap:8px}
+.hero .doi-tuong span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);border-radius:99px;padding:4px 12px;font-size:.86rem}
+.nut-nhom{display:flex;flex-direction:column;gap:10px}
+.nut{display:block;text-align:center;text-decoration:none;font-weight:700;padding:15px 22px;border-radius:12px;font-size:1rem;line-height:1.35}
+.nut small{display:block;font-weight:400;font-size:.85rem;opacity:.95}
+.nut-chinh{background:var(--nhan);color:#fff}
+.nut-phu{background:#fff;color:var(--chinh);border:2px solid #fff}
+.nut-vien{background:transparent;color:var(--chinh);border:2px solid var(--chinh)}
+.nut:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid #ffd27a;outline-offset:2px}
+.ghi-chu-nho{font-size:.88rem;color:#cfe5f4;margin-top:12px}
+/* lưới thẻ */
+.luoi{display:grid;gap:14px}
+.the{background:var(--the);border:1px solid var(--vien);border-radius:14px;padding:20px}
+.the p{color:var(--phu)}
+.so{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--sang);color:#fff;font-weight:700;margin-bottom:10px}
+/* sơ đồ */
+.so-do{background:var(--the);border:1px solid var(--vien);border-radius:14px;padding:20px;text-align:center;margin-top:18px}
+.o{border-radius:10px;padding:10px 12px;font-weight:600;font-size:.95rem}
+.o small{display:block;font-weight:400;color:var(--phu)}
+.o-chu{background:#fff4ec;border:2px solid var(--nhan)}
+.o-tong{background:var(--chinh);color:#fff;margin:0 auto;max-width:420px}
+.o-tong small{color:#d6e9f6}
+.o-phong{background:var(--nhat);border:1px solid #c4def0}
+.mui{color:var(--phu);font-size:1.2rem;line-height:1.6}
+/* demo */
+.vi-du{display:grid;gap:12px}
+.vi-du .the{border-left:5px solid var(--sang)}
+.vi-du .cau{display:block;background:var(--nhat);border-radius:8px;padding:10px 12px;margin:8px 0;font-style:italic;color:var(--chu)}
+/* khối gói skill */
+.khoi-goi{background:var(--the);border:1px solid var(--vien);border-radius:16px;padding:20px;margin-bottom:22px}
+.khoi-goi.mien-phi{border:2px solid var(--nhan)}
+.khoi-goi .dau-goi{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.khoi-goi .dau-goi h3{font-size:1.25rem;color:var(--chinh);margin:0}
+.khoi-goi .gia-goi{font-weight:800;color:var(--chinh)}
+.khoi-goi .yeu-cau{font-size:.9rem;color:var(--phu)}
+.ds-skill{list-style:none;display:grid;gap:10px;margin-bottom:16px}
+.ds-skill li{border:1px solid var(--vien);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;background:#fbfdff}
+.ds-skill .ten{font-weight:700}
+.ds-skill .ten code{font-weight:400;margin-left:2px}
+.ds-skill .mo-ta{color:var(--phu);font-size:.93rem}
+.nut-mua{align-self:flex-start;display:inline-block;text-decoration:none;font-weight:700;font-size:.88rem;padding:7px 16px;border-radius:99px;border:2px solid var(--vua);color:var(--vua);background:#fff}
+.nhan-goi{display:inline-block;align-self:flex-start;background:var(--nhan);color:#fff;font-size:.75rem;font-weight:700;padding:2px 10px;border-radius:99px}
+/* giá */
+.goi{display:flex;flex-direction:column}
+.goi .ten-goi{font-size:1.1rem;font-weight:700;margin-bottom:4px}
+.goi .gia{font-size:1.45rem;font-weight:800;color:var(--chinh);margin:6px 0 4px}
+.goi .gia-phu{font-size:.88rem;color:var(--phu);margin-bottom:12px}
+.goi ul{list-style:none;margin-bottom:16px;flex:1}
+.goi li{padding:4px 0 4px 22px;position:relative;color:var(--phu)}
+.goi li::before{content:"";position:absolute;left:4px;top:13px;width:8px;height:8px;border-radius:50%;background:var(--vua)}
+.goi.moi{border:2px solid var(--nhan)}
+.goi.chinh{border:2px solid var(--sang)}
+.goi .nhan-goi{margin-bottom:8px}
+.goi.chinh .nhan-goi{background:var(--vua)}
+.khuyen-mai{margin-top:18px;background:#fff8f3;border:2px dashed var(--nhan);border-radius:14px;padding:18px}
+.khuyen-mai h3{color:#b4521f}
+.khuyen-mai ul{padding-left:18px;color:var(--chu)}
+.luu-y{margin-top:16px;background:#fff;border:1px solid var(--vien);border-left:5px solid var(--chinh);border-radius:10px;padding:14px 16px;font-size:.95rem;color:var(--chu)}
+.luu-y ul{padding-left:18px}
+.luu-y li{margin-bottom:4px}
+/* bước */
+.buoc{list-style:none;counter-reset:b;display:grid;gap:10px}
+.buoc li{counter-increment:b;position:relative;background:var(--the);border:1px solid var(--vien);border-left:5px solid var(--sang);border-radius:10px;padding:14px 14px 14px 56px}
+.buoc li::before{content:counter(b);position:absolute;left:14px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--chinh);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.buoc span{display:block;color:var(--phu);font-size:.93rem}
+.cau-chuan{display:block;background:var(--nhat);border:2px dashed var(--vua);border-radius:10px;padding:14px;margin:10px 0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9rem;line-height:1.6;color:var(--chu);word-break:break-word;user-select:all;-webkit-user-select:all;cursor:text}
+.an-toan{background:var(--nhat)}
+.trung-thuc{margin-top:18px;background:#fff;border:1px dashed var(--chinh);border-radius:12px;padding:16px;font-size:.95rem}
+/* hỏi đáp */
+details{background:var(--the);border:1px solid var(--vien);border-radius:12px;padding:0 16px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:600;padding:15px 0;list-style:none;position:relative;padding-right:28px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:0;top:12px;font-size:1.3rem;color:var(--vua)}
+details[open] summary::after{content:"–"}
+details p{padding:0 0 16px;color:var(--phu)}
+/* cộng đồng + CTA cuối */
+.cong-dong{background:#fff}
+.cuoi{background:linear-gradient(160deg,var(--chinh) 0%,#21618C 100%);color:#fff;text-align:center}
+.cuoi h2{color:#fff}
+.cuoi p{color:#e3f0f9;margin:0 auto 22px;max-width:640px}
+.cuoi .nut-nhom{max-width:460px;margin:0 auto}
+.lien-he-nhanh{margin-top:22px;font-size:.95rem;color:#e3f0f9}
+.lien-he-nhanh a{color:#fff}
+.chan{padding:28px 0 40px;font-size:.88rem;color:var(--phu);background:#fff;border-top:1px solid var(--vien)}
+.chan p{margin-bottom:8px}
+.kenh{display:flex;flex-wrap:wrap;gap:8px 16px;margin:10px 0 14px;list-style:none}
+@media(max-width:420px){.dieu-huong .ve-chu{display:none}}
+@media(min-width:720px){
+ h1{font-size:2.4rem}
+ h2{font-size:1.9rem}
+ section{padding:76px 0}
+ .hero{padding:76px 0 88px}
+ .nut-nhom{flex-direction:row;flex-wrap:wrap}
+ .cuoi .nut-nhom{max-width:none;justify-content:center}
+ .luoi-3{grid-template-columns:repeat(3,1fr)}
+ .luoi-2{grid-template-columns:repeat(2,1fr)}
+ .ds-skill{grid-template-columns:repeat(2,1fr)}
+ .khoi-goi .dau-goi{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:6px 16px}
+}
+</style>
+</head>
+<body>
+
+<header class="dau">
+ <div class="khung">
+  <a class="thuong-hieu" href="/" aria-label="SubAgent Business, về trang chủ">
+   <svg width="34" height="34" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><defs><linearGradient id="nen-logo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5DADE2"/><stop offset="1" stop-color="#1F6FA8"/></linearGradient></defs><rect width="200" height="200" rx="46" fill="url(#nen-logo)"/><g stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".9"><line x1="100" y1="96" x2="52" y2="146"/><line x1="100" y1="96" x2="100" y2="156"/><line x1="100" y1="96" x2="148" y2="146"/></g><circle cx="100" cy="92" r="24" fill="#fff"/><circle cx="52" cy="148" r="14" fill="#fff"/><circle cx="100" cy="158" r="14" fill="#fff"/><circle cx="148" cy="148" r="14" fill="#fff"/><path d="M82 52 L100 32 L118 52" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+   <span>SubAgent <span>Business</span></span>
+  </a>
+  <nav class="dieu-huong" aria-label="Điều hướng">
+   <a class="ve-chu" href="/">Trang chủ</a>
+   <a class="nut-nho" href="#bang-gia">Bảng giá skill</a>
+  </nav>
+ </div>
+</header>
+
+<main>
+
+<!-- 1. HERO -->
+<section class="hero">
+ <div class="khung">
+  <span class="khau-hieu">Giải pháp SubAgent Business · Kỷ Nguyên Vươn Mình. Liên Tục Tiến Lên!</span>
+  <h1>Sàn Skill SubAgent — skill tiếng Việt cho Claude, dùng ngay cho shop &amp; doanh nghiệp</h1>
+  <p>Mỗi skill dạy Claude làm trọn một việc lặp lại: viết mô tả sản phẩm, soạn nháp trả lời khách, thiết kế ảnh bài đăng, dựng video từ ảnh sản phẩm. Anh/chị nói bằng tiếng Việt bình thường, skill chỉ tạo bản nháp hoặc lệnh để anh/chị duyệt; không skill nào tự đăng, tự gửi hay chi tiền.</p>
+  <div class="doi-tuong" aria-label="Phù hợp với">
+   <span>Shop online</span><span>Spa, salon</span><span>Quán ăn, cà phê</span><span>Trung tâm đào tạo</span><span>Agency</span><span>Doanh nghiệp nhỏ và vừa</span>
+  </div>
+  <div class="nut-nhom">
+   <a class="nut nut-chinh" href="https://github.com/minhaiglobal-stack/subagent-skill-starter" target="_blank" rel="noopener">Tải 5 skill miễn phí<small>Bộ SubAgent Starter trên GitHub</small></a>
+   <a class="nut nut-phu" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Đặt mua qua Zalo<small>Nhắn 0963124791</small></a>
+  </div>
+  <p class="ghi-chu-nho">Skill lẻ 129.000đ · gói 10 skill 299.000đ. Cần tài khoản Claude trả phí riêng (từ khoảng 20 USD/tháng, anh/chị tự trả cho Anthropic).</p>
+ </div>
+</section>
+
+<!-- 2. NỖI ĐAU -->
+<section id="noi-dau">
+ <div class="khung">
+  <span class="nhan-nho">Anh/chị có thấy mình ở đây?</span>
+  <h2>Dùng AI mỗi ngày nhưng lần nào cũng phải dặn lại từ đầu</h2>
+  <p class="dan">Ba tình huống chủ shop và doanh nghiệp nhỏ hay gặp khi tự dùng AI.</p>
+  <div class="luoi luoi-3">
+   <div class="the"><div class="so">1</div><h3>Prompt dài, mỗi lần một kiểu</h3><p>Lần này viết hay, lần sau lệch giọng, thiếu ý. Muốn kết quả ổn định thì phải dán lại cả đoạn dặn dò.</p></div>
+   <div class="the"><div class="so">2</div><h3>Sợ AI bịa giá, bịa thông số</h3><p>Một câu sai giá hay hứa quá lời gửi cho khách là mất uy tín, nên cuối cùng vẫn phải soát lại từng chữ.</p></div>
+   <div class="the"><div class="so">3</div><h3>Ảnh, video vẫn phải thuê ngoài</h3><p>Ảnh bài đăng, banner, video ngắn cần đều đặn, nhưng chưa có người thiết kế và chưa muốn mua phần mềm dựng trả phí.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 3. GIẢI PHÁP -->
+<section id="giai-phap" style="background:#fff">
+ <div class="khung">
+  <span class="nhan-nho">Skill là gì</span>
+  <h2>Cài một lần, Claude nhớ cách làm đúng việc đó</h2>
+  <p class="dan">Skill (Agent Skill) là một thư mục có tệp <code>SKILL.md</code> ghi cách làm một việc: hỏi thông tin gì, làm theo bước nào, tránh điều gì. Chép vào máy một lần; khi anh/chị nhờ đúng việc, Claude tự chọn skill phù hợp. Bộ skill do Giải pháp SubAgent Business tự viết, bằng tiếng Việt.</p>
+  <div class="so-do" role="img" aria-label="Sơ đồ: anh/chị nói việc cần làm, Claude dùng skill, ra bản nháp hoặc lệnh, anh/chị duyệt rồi tự đăng hoặc gửi">
+   <div class="o o-chu">Anh/chị nói việc cần làm bằng tiếng Việt<small>kèm thông tin thật: giá, chính sách, ảnh, lời thoại</small></div>
+   <div class="mui">&#8595;</div>
+   <div class="o o-tong">Claude dùng đúng skill<small>làm theo các bước và quy tắc trong SKILL.md</small></div>
+   <div class="mui">&#8595;</div>
+   <div class="o o-phong">Bản nháp, tệp thiết kế hoặc lệnh viết sẵn<small>thiếu dữ liệu thì hỏi lại, không tự bịa</small></div>
+   <div class="mui">&#8595;</div>
+   <div class="o o-chu">Anh/chị duyệt, sửa, rồi tự đăng hoặc tự gửi</div>
+  </div>
+ </div>
+</section>
+
+<!-- 4. DEMO: CÂU DÙNG MẪU -->
+<section id="vi-du">
+ <div class="khung">
+  <span class="nhan-nho">Dùng thế nào</span>
+  <h2>Nói như nhờ một nhân viên, không cần học lệnh</h2>
+  <p class="dan">Vài câu dùng mẫu lấy từ hướng dẫn của các gói. Muốn gọi đích danh, thêm tên skill vào câu, ví dụ "dùng skill cham-bai-truoc-khi-dang".</p>
+  <div class="vi-du luoi luoi-3">
+   <div class="the"><h3>Mô tả sản phẩm (miễn phí)</h3><span class="cau">"Viết mô tả sản phẩm cho Shopee: áo thun nam cotton, form rộng, size M–XL, màu trắng/đen, giá 159k, thấm hút, không xù lông."</span><p>Ra 3 bản ngắn, vừa, dài và tiêu đề tối đa 120 ký tự.</p></div>
+   <div class="the"><h3>Ảnh bài đăng (gói Tạo ảnh)</h3><span class="cau">"Làm ảnh bài đăng dọc cho tiệm bánh Mộc An, màu nâu, tiêu đề 'Bánh mì mới ra lò lúc 6 giờ sáng'..."</span><p>Ra tệp HTML thiết kế sẵn, anh/chị xuất PNG bằng Edge hoặc Chrome.</p></div>
+   <div class="the"><h3>Video từ ảnh (gói Tạo video)</h3><span class="cau">"Làm video 9:16 từ 8 ảnh trong D:\anh-shop, chữ: Son dưỡng 85k, freeship hôm nay, nhạc là nhac.mp3"</span><p>Claude trình kế hoạch, viết lệnh FFmpeg và chỉ chạy khi anh/chị đồng ý.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 5. CÁC GÓI SKILL -->
+<section id="cac-goi" style="background:#fff">
+ <div class="khung">
+  <span class="nhan-nho">Danh sách skill</span>
+  <h2>4 gói, 35 skill: chọn đúng việc anh/chị đang cần</h2>
+  <p class="dan">Mỗi skill trong 3 gói trả phí đều bán lẻ 129.000đ, hoặc mua cả gói 10 skill 299.000đ. Bấm nút để nhắn Zalo, ghi tên skill hoặc tên gói anh/chị chọn.</p>
+
+  <!-- Gói Starter -->
+  <div class="khoi-goi mien-phi" id="goi-starter">
+   <div class="dau-goi">
+    <span class="nhan-goi">Miễn phí</span>
+    <h3>SubAgent Starter · 5 skill</h3>
+    <span class="gia-goi">0đ</span>
+   </div>
+   <ul class="ds-skill">
+    <li><span class="ten">Mô tả sản phẩm shop <code>mo-ta-san-pham-shop</code></span><span class="mo-ta">Viết 3 bản mô tả ngắn, vừa, dài và tiêu đề SEO tối đa 120 ký tự cho Shopee, TikTok Shop, Lazada, website; không bịa thông số.</span></li>
+    <li><span class="ten">Soạn nháp trả lời khách <code>soan-nhap-tra-loi-khach</code></span><span class="mo-ta">Nháp trả lời tin nhắn khách theo bảng giá, chính sách của chính anh/chị; đánh dấu ca phải chuyển người thật. Không bao giờ tự gửi.</span></li>
+    <li><span class="ten">Lịch nội dung 7 ngày <code>lich-noi-dung-7-ngay</code></span><span class="mo-ta">Lịch đăng 7 ngày cho 1–3 kênh theo 5 trụ cột, mỗi ô có hook, ý chính và lời kêu gọi hành động.</span></li>
+    <li><span class="ten">Chấm bài trước khi đăng <code>cham-bai-truoc-khi-dang</code></span><span class="mo-ta">Soát bài đăng, caption, kịch bản theo danh sách kiểm; trả ĐẠT hoặc CHƯA ĐẠT kèm gợi ý sửa cụ thể.</span></li>
+    <li><span class="ten">Biên bản họp thành việc <code>bien-ban-hop-thanh-viec</code></span><span class="mo-ta">Ghi chú họp thành bảng việc (việc, người, hạn, ưu tiên) kèm email tóm tắt dạng nháp; không tự gửi.</span></li>
+   </ul>
+   <div class="nut-nhom">
+    <a class="nut nut-chinh" href="https://github.com/minhaiglobal-stack/subagent-skill-starter" target="_blank" rel="noopener">Tải 5 skill miễn phí trên GitHub</a>
+   </div>
+   <p class="yeu-cau" style="margin-top:10px">Nếu trang GitHub chưa mở được, anh/chị nhắn Zalo <a href="https://zalo.me/0963124791" target="_blank" rel="noopener">0963124791</a> để nhận tệp nén miễn phí.</p>
+  </div>
+
+  <!-- Gói Shop online -->
+  <div class="khoi-goi" id="goi-shop-online">
+   <div class="dau-goi">
+    <h3>Gói Shop online · 10 skill</h3>
+    <span class="gia-goi">299.000đ cả gói · 129.000đ/skill lẻ</span>
+   </div>
+   <ul class="ds-skill">
+    <li><span class="ten">Trả lời đánh giá shop <code>tra-loi-danh-gia-shop</code></span><span class="mo-ta">Nháp trả lời từng đánh giá 1–5 sao, mỗi câu khác nhau, đánh dấu ca cần chủ shop tự xử lý. Không tự đăng.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Kịch bản livestream bán hàng <code>kich-ban-livestream-ban-hang</code></span><span class="mo-ta">Kịch bản live 30–60 phút chia theo từng phút, chỉ dùng sản phẩm và ưu đãi chủ shop đưa.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Tiêu đề SEO hàng loạt <code>tieu-de-seo-san-pham-hang-loat</code></span><span class="mo-ta">Đọc bảng CSV sản phẩm, viết tiêu đề SEO và từ khóa cho từng sàn, xuất lại CSV để chủ shop kiểm và tải lên.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Chăm sóc sau mua <code>cham-soc-sau-mua</code></span><span class="mo-ta">Chuỗi tin nhắn nháp sau khi giao hàng: cảm ơn, hướng dẫn dùng, mời đánh giá đúng chính sách sàn, nhắc mua lại.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Báo cáo doanh thu tuần <code>bao-cao-doanh-thu-tuan</code></span><span class="mo-ta">Từ file xuất đơn hàng: doanh thu, số đơn, sản phẩm bán chạy, đơn hoàn/hủy, gợi ý việc nên làm. Không bịa số.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Kịch bản video ngắn sản phẩm <code>kich-ban-video-ngan-san-pham</code></span><span class="mo-ta">Kịch bản 15–30 giây: hook 3 giây đầu, cảnh quay, lời thoại, chữ trên màn hình, lời kêu gọi mua hàng.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Phản hồi khiếu nại, đổi trả <code>phan-hoi-khieu-nai-doi-tra</code></span><span class="mo-ta">Nháp phản hồi theo đúng chính sách đổi trả của shop, liệt kê thông tin cần xin thêm, chuyển chủ shop quyết hoàn tiền hay đổi hàng.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Tên và mô tả combo khuyến mãi <code>ten-va-mo-ta-combo-khuyen-mai</code></span><span class="mo-ta">Đề xuất cách ghép combo, đặt tên, viết mô tả, kèm biên lợi nhuận ước tính từ giá vốn và giá bán chủ shop đưa.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Kế hoạch flash sale <code>ke-hoach-flash-sale</code></span><span class="mo-ta">Kế hoạch ngày đôi, flash sale: lịch chuẩn bị, sản phẩm mồi, nội dung, checklist kho và đóng gói. Không đổi giá thay chủ shop.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Mẫu tin nhắn chốt đơn <code>mau-tin-nhan-chot-don</code></span><span class="mo-ta">Bộ câu chốt đơn và cách xử lý khi khách từ chối, trung thực, theo sản phẩm và chính sách thật của shop.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+   </ul>
+   <div class="nut-nhom"><a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua gói 299k: Shop online</a></div>
+  </div>
+
+  <!-- Gói Tạo ảnh -->
+  <div class="khoi-goi" id="goi-tao-anh">
+   <div class="dau-goi">
+    <h3>Gói Tạo ảnh · 10 skill</h3>
+    <span class="gia-goi">299.000đ cả gói · 129.000đ/skill lẻ</span>
+    <span class="yeu-cau">Cần trình duyệt Edge hoặc Chrome để xuất PNG. Skill viết prompt dùng với công cụ ảnh AI của riêng anh/chị.</span>
+   </div>
+   <ul class="ds-skill">
+    <li><span class="ten">Ảnh bài đăng mạng xã hội <code>anh-bai-dang-mang-xa-hoi</code></span><span class="mo-ta">Ảnh 1080x1350 hoặc 1080x1080 có tiêu đề, 1–3 ý chính, màu và tên thương hiệu, chữ tiếng Việt chuẩn.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Carousel kiến thức <code>carousel-kien-thuc</code></span><span class="mo-ta">Bộ 5–10 slide vuốt ngang đồng bộ màu, phông, có đánh số trang, slide bìa và slide kết.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Thumbnail YouTube <code>thumbnail-youtube</code></span><span class="mo-ta">3 phương án ảnh bìa 1280x720, chữ lớn tối đa 6 từ, đúng nội dung video, không giật tít sai sự thật.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Infographic quy trình <code>infographic-quy-trinh</code></span><span class="mo-ta">Quy trình nhiều bước, bảng so sánh hoặc số liệu thành infographic; biểu đồ đúng tỉ lệ, luôn ghi nguồn.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Banner khuyến mãi, sự kiện <code>banner-khuyen-mai-su-kien</code></span><span class="mo-ta">Bộ banner đồng bộ cho ảnh bìa Facebook, hero website, story 9:16, bài vuông; chỉ dùng đúng ưu đãi anh/chị đưa.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Bộ nhận diện mini <code>bo-nhan-dien-mini</code></span><span class="mo-ta">Logo chữ hoặc hình học SVG, bảng màu mã HEX, cặp phông và trang hướng dẫn áp dụng; có bước kiểm tránh giống thương hiệu có thật.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Prompt bối cảnh sản phẩm <code>prompt-boi-canh-san-pham</code></span><span class="mo-ta">Bộ prompt song ngữ Anh - Việt đặt sản phẩm vào nhiều bối cảnh, giữ đúng hình dáng, màu, nhãn sản phẩm thật. Không tự gọi công cụ nào.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Prompt ảnh minh họa bài viết <code>prompt-anh-minh-hoa-bai-viet</code></span><span class="mo-ta">Đọc bài viết, chọn ý đáng minh họa, lập bộ quy tắc phong cách và viết prompt song ngữ cho từng ảnh. Không tự gọi công cụ nào.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Ảnh trích dẫn chia sẻ <code>anh-trich-dan-chia-se</code></span><span class="mo-ta">Biến câu nói của founder, chuyên gia nội bộ thành ảnh trích dẫn, giữ nguyên văn, ghi đúng tên và vai trò người nói.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Bảng giá, menu dịch vụ <code>bang-gia-menu-dich-vu</code></span><span class="mo-ta">Ảnh bảng giá hoặc menu cho spa, quán, khóa học từ dữ liệu anh/chị đưa; căn giá thẳng cột, giữ đúng từng con số.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+   </ul>
+   <div class="nut-nhom"><a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua gói 299k: Tạo ảnh</a></div>
+  </div>
+
+  <!-- Gói Tạo video -->
+  <div class="khoi-goi" id="goi-tao-video">
+   <div class="dau-goi">
+    <h3>Gói Tạo video · 10 skill</h3>
+    <span class="gia-goi">299.000đ cả gói · 129.000đ/skill lẻ</span>
+    <span class="yeu-cau">Cần FFmpeg (phần mềm miễn phí) cho các skill dựng video; 3 skill kế hoạch quay, kịch bản dài và prompt video AI không cần FFmpeg.</span>
+   </div>
+   <ul class="ds-skill">
+    <li><span class="ten">Video ảnh trượt sản phẩm <code>video-anh-truot-san-pham</code></span><span class="mo-ta">5–15 ảnh sản phẩm thành video 9:16 hoặc 1:1 có chuyển cảnh, chữ giá/ưu đãi và nhạc của anh/chị.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Phụ đề tiếng Việt từ file lời <code>phu-de-tieng-viet-tu-file-loi</code></span><span class="mo-ta">Lời thoại có sẵn thành tệp phụ đề .srt căn thời gian, kèm lệnh gắn phụ đề cứng hoặc mềm.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Chuẩn hóa video đa nền tảng <code>chuan-hoa-video-da-nen-tang</code></span><span class="mo-ta">Một video gốc ra nhiều bản đúng khung TikTok, Reels, Shorts, YouTube, Facebook, Zalo; chuẩn âm lượng, giới hạn dung lượng.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Mở đầu, kết thúc thương hiệu <code>mo-dau-ket-thuc-thuong-hieu</code></span><span class="mo-ta">Intro, outro 3–5 giây có logo, màu, khẩu hiệu của anh/chị, ghép vào đầu và cuối video chính.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Video chữ động kiến thức <code>video-chu-dong-kien-thuc</code></span><span class="mo-ta">Bài viết ngắn thành video chữ động 20–45 giây, không cần quay hay lộ mặt.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Kế hoạch quay video ngắn <code>ke-hoach-quay-video-ngan</code></span><span class="mo-ta">Kế hoạch một buổi quay điện thoại 2–4 giờ ra 10 video: gom cảnh, góc máy, ánh sáng, lời thoại, lịch, checklist.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Kịch bản video dài có chương <code>kich-ban-video-dai-co-chuong</code></span><span class="mo-ta">Kịch bản YouTube 8–15 phút có chương, mốc thời gian, gợi ý B-roll, phần mô tả và 3 phương án tiêu đề.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Prompt video AI cảnh quay <code>prompt-video-ai-canh-quay</code></span><span class="mo-ta">Storyboard và prompt từng cảnh tiếng Anh kèm bản dịch, giữ nhất quán nhân vật, dùng cho công cụ video AI anh/chị tự chọn.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Làm sạch âm thanh video <code>lam-sach-am-thanh-video</code></span><span class="mo-ta">Giảm ồn nền, chuẩn hóa âm lượng, cắt khoảng lặng đầu/cuối bằng bộ lọc có sẵn của FFmpeg.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Video so sánh trước sau <code>video-so-sanh-truoc-sau</code></span><span class="mo-ta">Ảnh hoặc clip thật trước và sau thành video chia đôi màn hình hoặc hiệu ứng gạt, có nhãn TRƯỚC/SAU. Không bịa kết quả.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+   </ul>
+   <div class="nut-nhom"><a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua gói 299k: Tạo video</a></div>
+  </div>
+ </div>
+</section>
+
+<!-- 6. BẢNG GIÁ (theo kinh-doanh/bang-gia.json, cập nhật 2026-10-06) -->
+<section id="bang-gia">
+ <div class="khung">
+  <span class="nhan-nho">Bảng giá</span>
+  <h2>Thử miễn phí trước, mua thêm đúng skill anh/chị cần</h2>
+  <p class="dan">Giá chính thức của Sàn Skill SubAgent. Thanh toán chuyển khoản; bên em giao tệp sau khi nhận chuyển khoản.</p>
+  <div class="luoi luoi-3">
+   <div class="the goi moi">
+    <span class="nhan-goi">Bắt đầu ở đây</span>
+    <div class="ten-goi">Bộ 5 skill miễn phí SubAgent Starter</div>
+    <div class="gia">0đ</div>
+    <div class="gia-phu">Cần tài khoản Claude riêng</div>
+    <ul><li>5 skill dùng ngay với Claude: mô tả sản phẩm, soạn nháp trả lời khách, lịch nội dung 7 ngày, chấm bài trước khi đăng, biên bản họp thành việc</li><li>Hướng dẫn cài</li></ul>
+    <a class="nut nut-chinh" href="https://github.com/minhaiglobal-stack/subagent-skill-starter" target="_blank" rel="noopener">Tải 5 skill miễn phí</a>
+   </div>
+   <div class="the goi">
+    <div class="ten-goi">Skill lẻ</div>
+    <div class="gia">129.000đ</div>
+    <div class="gia-phu">Mỗi skill · chưa gồm thuê bao Claude</div>
+    <ul><li>1 skill theo ngành/việc</li><li>Hướng dẫn cài và câu dùng mẫu</li></ul>
+    <a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua skill lẻ qua Zalo</a>
+   </div>
+   <div class="the goi chinh">
+    <span class="nhan-goi">Trọn bộ một ngành</span>
+    <div class="ten-goi">Gói 10 skill theo ngành</div>
+    <div class="gia">299.000đ</div>
+    <div class="gia-phu">Mỗi gói · chưa gồm thuê bao Claude</div>
+    <ul><li>10 skill cùng một ngành/việc (hiện có: Shop online, Tạo ảnh, Tạo video)</li><li>Mẫu quy trình đi kèm</li><li>Hướng dẫn cài</li></ul>
+    <a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua gói 10 skill qua Zalo</a>
+   </div>
+  </div>
+
+  <div class="khuyen-mai">
+   <h3>Khuyến mãi mua 1 tặng 1 skill lẻ</h3>
+   <ul>
+    <li>Thời gian: từ 10/10/2026 đến hết 31/10/2026.</li>
+    <li>Mua 1 skill lẻ, tặng 1 skill lẻ tự chọn có giá trị không cao hơn skill đã mua.</li>
+    <li>Chỉ áp dụng cho skill lẻ. Không áp dụng cho Gói 10 skill.</li>
+   </ul>
+  </div>
+
+  <div class="luu-y">
+   <strong>Trước khi mua, anh/chị lưu ý:</strong>
+   <ul>
+    <li>Cần <strong>tài khoản Claude trả phí riêng</strong> có hỗ trợ Claude Code (từ khoảng 20 USD/tháng). Anh/chị tự đăng ký và tự trả trực tiếp cho Anthropic; khoản này không nằm trong giá skill.</li>
+    <li>Gói Tạo video cần <strong>FFmpeg</strong>, phần mềm miễn phí, mã nguồn mở. Hướng dẫn cài có trong gói.</li>
+    <li>Gói Tạo ảnh dùng trình duyệt Edge hoặc Chrome có sẵn trên máy; không cần phần mềm thiết kế, không cần khóa API.</li>
+   </ul>
+  </div>
+ </div>
+</section>
+
+<!-- 7. CÁCH MUA + CÁCH CÀI -->
+<section id="cach-mua" style="background:#fff">
+ <div class="khung">
+  <span class="nhan-nho">Cách mua</span>
+  <h2>3 bước, nhắn Zalo là xong</h2>
+  <p class="dan">Trang này không có cổng thanh toán và không có biểu mẫu thu thông tin. Anh/chị mua trực tiếp qua Zalo với bên em.</p>
+  <ol class="buoc">
+   <li><strong>Nhắn Zalo 0963124791</strong><span>Ghi tên skill hoặc tên gói anh/chị chọn, ví dụ "Mua lẻ lam-sach-am-thanh-video" hoặc "Mua gói Tạo ảnh".</span></li>
+   <li><strong>Chuyển khoản</strong><span>Bên em gửi số tiền và thông tin chuyển khoản qua Zalo.</span></li>
+   <li><strong>Nhận tệp zip và hướng dẫn cài</strong><span>Sau khi nhận chuyển khoản, bên em gửi tệp nén kèm hướng dẫn cài qua Zalo hoặc Telegram.</span></li>
+  </ol>
+  <div class="nut-nhom" style="margin-top:18px"><a class="nut nut-chinh" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Đặt mua qua Zalo 0963124791</a></div>
+
+  <div id="cach-cai" style="margin-top:48px">
+   <span class="nhan-nho">Cách cài</span>
+   <h2>Chép thư mục, hoặc dán một câu cho Claude</h2>
+   <p class="dan">Mỗi skill là một thư mục con trong <code>skills\</code>, có tệp <code>SKILL.md</code>. Chọn một trong hai cách.</p>
+   <div class="luoi luoi-2">
+    <div class="the">
+     <h3>Cách 1: chép tay (3 bước)</h3>
+     <ol class="buoc" style="margin-top:10px">
+      <li><strong>Giải nén</strong> tệp nhận được ra một thư mục bất kỳ.</li>
+      <li><strong>Chép</strong> các thư mục trong <code>skills\</code> vào <code>%USERPROFILE%\.claude\skills\</code><span>macOS/Linux: <code>~/.claude/skills/</code>. Chưa có thư mục skills thì tạo mới. Kết quả đúng, ví dụ: <code>...\.claude\skills\mo-ta-san-pham-shop\SKILL.md</code></span></li>
+      <li><strong>Khởi động lại</strong> Claude Code (đóng mở lại phiên).</li>
+     </ol>
+    </div>
+    <div class="the">
+     <h3>Cách 2: nhờ Claude cài</h3>
+     <p>Mở Claude Code và dán câu sau, thay đường dẫn bằng thư mục anh/chị đã giải nén:</p>
+     <code class="cau-chuan">Cài các skill trong thư mục D:\goi-skill\skills vào thư mục skill của tôi (%USERPROFILE%\.claude\skills), mỗi skill một thư mục con, không ghi đè skill đang có.</code>
+     <p>Claude sẽ xin phép trước khi chép tệp; đọc kỹ từng yêu cầu rồi mới bấm đồng ý.</p>
+    </div>
+   </div>
+   <div class="luu-y">
+    <strong>Tự kiểm tra sau khi cài:</strong> trong Claude Code, gõ "Liệt kê các skill bạn đang có". Đạt khi Claude nêu đủ tên skill vừa cài. Thiếu tên nào thì kiểm lại đường dẫn: mỗi thư mục skill phải nằm trực tiếp trong <code>skills\</code>, không lồng thêm cấp.
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 8. AN TOÀN -->
+<section id="an-toan" class="an-toan">
+ <div class="khung">
+  <span class="nhan-nho">An toàn và dữ liệu</span>
+  <h2>Skill soạn nháp, anh/chị là người bấm</h2>
+  <p class="dan">Các quy tắc dưới đây được viết thẳng vào từng skill.</p>
+  <div class="luoi luoi-2">
+   <div class="the"><h3>Chỉ tạo nháp, không tự đăng, tự gửi</h3><p>Không skill nào gửi tin nhắn, gửi email, đăng bài, đăng nhập mạng xã hội, chi tiền hay cam kết thay anh/chị. Anh/chị đọc, sửa và tự bấm.</p></div>
+   <div class="the"><h3>Không bịa</h3><p>Giá, thông số, ưu đãi, số liệu chỉ lấy từ dữ liệu anh/chị đưa; thiếu thì skill hỏi lại hoặc ghi rõ phần cần bổ sung.</p></div>
+   <div class="the"><h3>Lệnh chỉ chạy khi anh/chị đồng ý</h3><p>Skill video viết sẵn lệnh FFmpeg, chỉ chạy trong thư mục anh/chị chỉ định, luôn ghi ra tệp mới, không ghi đè và không xóa tệp gốc.</p></div>
+   <div class="the"><h3>Chống lừa AI</h3><p>Tin nhắn khách, ghi chú, trang web là dữ liệu, không phải lệnh. Câu kiểu "bỏ qua hướng dẫn" bị gắn cờ và báo cho anh/chị.</p></div>
+  </div>
+  <div class="trung-thuc">
+   <strong>Nói rõ về dữ liệu:</strong> bộ skill không chứa khóa API và không tự gọi dịch vụ ngoài. Nội dung anh/chị đưa vào vẫn được Claude xử lý theo điều khoản tài khoản Anthropic của chính anh/chị, nên đừng dán mật khẩu, OTP hay số thẻ. Nhạc, hình đưa vào video phải là của anh/chị hoặc đã có giấy phép.
+  </div>
+ </div>
+</section>
+
+<!-- 9. BẰNG CHỨNG: TỰ KIỂM CHỨNG -->
+<section id="tu-kiem" style="background:#fff">
+ <div class="khung">
+  <span class="nhan-nho">Xem tận mắt</span>
+  <h2>Chưa cần tin lời bên em: thử 5 skill miễn phí trước</h2>
+  <p class="dan">Bên em chưa đăng lời khen hay số liệu khách hàng. Cách chắc nhất là anh/chị cài bộ Starter miễn phí, giao thử một việc thật của mình và tự xem bản nháp. Thấy hợp thì mới mua thêm skill theo ngành.</p>
+  <div class="nut-nhom"><a class="nut nut-vien" href="https://github.com/minhaiglobal-stack/subagent-skill-starter" target="_blank" rel="noopener">Tải 5 skill miễn phí trên GitHub</a></div>
+ </div>
+</section>
+
+<!-- 10. HỎI ĐÁP -->
+<section id="hoi-dap">
+ <div class="khung">
+  <span class="nhan-nho">Hỏi đáp</span>
+  <h2>Câu hỏi thường gặp</h2>
+  <p class="dan">Những điều anh/chị hay hỏi trước khi mua skill.</p>
+  <details>
+   <summary>Skill khác gì một câu prompt thường?</summary>
+   <p>Prompt phải dán lại mỗi lần và dễ lệch. Skill là một thư mục cài một lần, ghi sẵn các bước, câu hỏi cần hỏi và quy tắc (không bịa giá, chỉ soạn nháp, tránh từ cấm của sàn). Khi anh/chị nhờ đúng việc, Claude tự dùng skill đó nên kết quả ổn định hơn và anh/chị không phải nhớ prompt.</p>
+  </details>
+  <details>
+   <summary>Tôi cần những gì để dùng?</summary>
+   <p>Ứng dụng Claude (tab Code) hoặc Claude Code và tài khoản Claude trả phí riêng có hỗ trợ Claude Code, từ khoảng 20 USD/tháng, anh/chị tự trả cho Anthropic. Máy Windows 10/11, macOS hoặc Linux. Gói Tạo ảnh cần Edge hoặc Chrome; gói Tạo video cần thêm FFmpeg (miễn phí).</p>
+  </details>
+  <details>
+   <summary>Dùng skill có an toàn không?</summary>
+   <p>Skill chỉ soạn nháp, không tự đăng, tự gửi, chi tiền hay cam kết thay anh/chị. Skill video chỉ chạy lệnh khi anh/chị đồng ý, ghi tệp mới, không xóa tệp. Bộ skill không chứa khóa API. Nội dung anh/chị đưa vào được Claude xử lý theo tài khoản Anthropic của anh/chị, vì vậy đừng dán mật khẩu, OTP, số thẻ.</p>
+  </details>
+  <details>
+   <summary>Tôi không rành kỹ thuật, cài có khó không?</summary>
+   <p>Có hai cách: chép thư mục skill vào <code>%USERPROFILE%\.claude\skills\</code>, hoặc dán một câu để Claude tự chép (Claude xin phép trước khi chép). Sau đó gõ "Liệt kê các skill bạn đang có" để tự kiểm tra. Kẹt ở bước nào, anh/chị nhắn Zalo 0963124791.</p>
+  </details>
+  <details>
+   <summary>Khuyến mãi mua 1 tặng 1 áp dụng thế nào?</summary>
+   <p>Từ 10/10/2026 đến hết 31/10/2026: mua 1 skill lẻ được tặng 1 skill lẻ tự chọn, giá trị không cao hơn skill đã mua. Không áp dụng cho Gói 10 skill.</p>
+  </details>
+  <details>
+   <summary>Có hoàn tiền hay bảo hành cho skill không?</summary>
+   <p>Bảng giá hiện chưa có chính sách hoàn tiền, bảo hành riêng cho skill lẻ và gói 10 skill. Anh/chị vui lòng liên hệ Zalo 0963124791 để hỏi trước khi chuyển khoản. Thuê bao Claude do anh/chị trả trực tiếp cho Anthropic nên bên em không hoàn khoản này.</p>
+  </details>
+ </div>
+</section>
+
+<!-- 11. CỘNG ĐỒNG -->
+<section id="cong-dong" class="cong-dong">
+ <div class="khung">
+  <span class="nhan-nho">Cộng đồng</span>
+  <h2>Hỏi cách dùng, chia sẻ cách làm cùng các chủ doanh nghiệp khác</h2>
+  <p class="dan">Nhóm "Phòng Ban AI Cho Chủ Doanh Nghiệp – SubAgent" trên Zalo và "Cộng đồng Phòng ban AI cho doanh nghiệp nhỏ" trên Facebook.</p>
+  <div class="nut-nhom">
+   <a class="nut nut-vien" href="https://zalo.me/g/fbraytv6alpfpbql9upd" target="_blank" rel="noopener">Vào nhóm Zalo</a>
+   <a class="nut nut-vien" href="https://www.facebook.com/groups/1634282701631881" target="_blank" rel="noopener">Vào nhóm Facebook</a>
+  </div>
+ </div>
+</section>
+
+<!-- 12. CTA CUỐI + LIÊN HỆ -->
+<section id="lien-he" class="cuoi">
+ <div class="khung">
+  <h2>Bắt đầu bằng 5 skill miễn phí, mua thêm khi anh/chị thấy hợp</h2>
+  <p>Cần tư vấn chọn skill theo việc của mình, hoặc muốn đặt mua skill lẻ, gói 10 skill: nhắn Zalo 0963124791, ghi tên skill hoặc gói.</p>
+  <div class="nut-nhom">
+   <a class="nut nut-chinh" href="https://github.com/minhaiglobal-stack/subagent-skill-starter" target="_blank" rel="noopener">Tải 5 skill miễn phí</a>
+   <a class="nut nut-phu" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Đặt mua qua Zalo</a>
+  </div>
+  <p class="lien-he-nhanh">Hoặc liên hệ: điện thoại <a href="tel:+84963124791">0963124791</a> · Telegram: số 0963124791 · Email <a href="mailto:minhaiglobal@gmail.com">minhaiglobal@gmail.com</a></p>
+ </div>
+</section>
+
+</main>
+
+<footer class="chan">
+ <div class="khung">
+  <p><strong>Giải pháp SubAgent Business</strong> · Kỷ Nguyên Vươn Mình. Liên Tục Tiến Lên! · <a href="/">Về trang chủ</a></p>
+  <p>Liên hệ: Zalo <a href="https://zalo.me/0963124791" target="_blank" rel="noopener">0963124791</a> · Telegram: 0963124791 · Điện thoại <a href="tel:+84963124791">0963124791</a> · Email <a href="mailto:minhaiglobal@gmail.com">minhaiglobal@gmail.com</a></p>
+  <ul class="kenh" aria-label="Kênh của SubAgent Business">
+   <li><a href="https://www.facebook.com/profile.php?id=61595252995765" target="_blank" rel="noopener">Fanpage Facebook</a></li>
+   <li><a href="https://www.youtube.com/@subagentbusiness" target="_blank" rel="noopener">YouTube</a></li>
+   <li><a href="https://www.tiktok.com/@camsellerai" target="_blank" rel="noopener">TikTok</a></li>
+   <li><a href="https://github.com/minhaiglobal-stack" target="_blank" rel="noopener">GitHub</a></li>
+  </ul>
+  <p>Claude là sản phẩm của Anthropic; Giải pháp SubAgent Business không phải Anthropic và không bán tài khoản Claude.</p>
+  <p>Dữ liệu cá nhân: trang này không có biểu mẫu, không dùng cookie, không gắn mã theo dõi hay quảng cáo và không thu thập dữ liệu của anh/chị. Trang chỉ tải phông chữ Be Vietnam Pro từ Google Fonts. Thông tin anh/chị gửi qua Zalo, Telegram hoặc email chỉ dùng để tư vấn và giao skill; vui lòng không gửi mật khẩu hay khóa API.</p>
+ </div>
+</footer>
+
+</body>
+</html>
