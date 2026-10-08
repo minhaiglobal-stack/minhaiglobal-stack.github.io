@@ -268,7 +268,7 @@ dialog.mua::backdrop{background:rgba(10,25,40,.62)}
  <div class="khung">
   <span class="nhan-nho">Danh sách skill</span>
   <h2>4 gói, 35 skill: chọn đúng việc anh/chị đang cần</h2>
-  <p class="dan">Mỗi skill trong 3 gói trả phí đều bán lẻ 129.000đ, hoặc mua cả gói 10 skill 299.000đ. Bấm nút Mua để hiện mã QR chuyển khoản có sẵn số tiền và mã đơn; chuyển xong, nhắn mã đơn qua Zalo để nhận link tải.</p>
+  <p class="dan">Mỗi skill trong 3 gói trả phí đều bán lẻ 129.000đ, hoặc mua cả gói 10 skill 299.000đ. Bấm nút Mua để hiện mã QR chuyển khoản có sẵn số tiền và mã đơn; chuyển xong, trang tự hiện nút Tải về; cần hỗ trợ thì nhắn Zalo.</p>
 
   <!-- Gói Starter -->
   <div class="khoi-goi mien-phi" id="goi-starter">
@@ -362,7 +362,7 @@ dialog.mua::backdrop{background:rgba(10,25,40,.62)}
  <div class="khung">
   <span class="nhan-nho">Bảng giá</span>
   <h2>Thử miễn phí trước, mua thêm đúng skill anh/chị cần</h2>
-  <p class="dan">Giá chính thức của Sàn Skill SubAgent. Thanh toán chuyển khoản bằng mã QR; bên em gửi link tải sau khi xác nhận tiền vào.</p>
+  <p class="dan">Giá chính thức của Sàn Skill SubAgent. Thanh toán chuyển khoản bằng mã QR; khi tiền vào, trang tự hiện nút Tải về.</p>
   <div class="luoi luoi-3">
    <div class="the goi moi">
     <span class="nhan-goi">Bắt đầu ở đây</span>
@@ -414,19 +414,24 @@ dialog.mua::backdrop{background:rgba(10,25,40,.62)}
 <section id="cach-mua" style="background:#fff">
  <div class="khung">
   <span class="nhan-nho">Cách mua</span>
-  <h2>3 bước: bấm Mua, quét QR, nhắn mã đơn</h2>
-  <p class="dan">Trang này không có cổng thanh toán và không có biểu mẫu thu thông tin. Mã QR chuyển khoản có sẵn số tiền và mã đơn; bên em đối chiếu tiền vào theo mã đơn rồi gửi link tải.</p>
+  <h2>3 bước: bấm Mua, quét QR, tải về</h2>
+  <p class="dan">Trang này không có biểu mẫu thu thông tin. Mã QR chuyển khoản có sẵn số tiền và mã đơn; hệ thống giao hàng tự đối chiếu tiền vào theo mã đơn và hiện nút Tải về ngay trên trang, chạy tự động 24/7. Zalo chỉ để hỗ trợ khi cần.</p>
   <ol class="buoc">
    <li><strong>Bấm "Mua lẻ" hoặc "Mua gói"</strong><span>Hộp thanh toán hiện tên skill hoặc gói, giá và mã đơn, ví dụ "SKL S07 X7K2". Trong thời gian khuyến mãi, anh/chị chọn luôn skill quà ở đây.</span></li>
    <li><strong>Quét QR chuyển khoản</strong><span>Mở ứng dụng ngân hàng và quét mã: số tiền và nội dung đã điền sẵn. Không quét được thì chuyển tay tới MB, số tài khoản 15188888888, chủ tài khoản NGUYEN TUAN MINH, ghi đúng nội dung là mã đơn.</span></li>
-   <li><strong>Nhắn mã đơn qua Zalo, nhận link tải</strong><span>Bấm "Tôi đã chuyển khoản" để mở Zalo 0963124791 và gửi mã đơn. Sau khi xác nhận tiền vào, bên em gửi link tải kèm tệp cài nhấp đúp trong giờ làm việc (8:00–22:00).</span></li>
+   <li><strong>Trang tự hiện nút "Tải về"</strong><span>Giữ nguyên hộp thanh toán. Thường 5–30 giây sau khi chuyển, trang báo đã nhận tiền và hiện nút "Tải về" cho từng tệp. Nếu quá 10 phút chưa thấy, anh/chị bấm "Tôi đã chuyển khoản" để nhắn Zalo 0963124791 kèm mã đơn.</span></li>
   </ol>
   <div class="nut-nhom" style="margin-top:18px"><a class="nut nut-chinh" href="#goi-shop-online">Chọn skill để mua</a><a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Hỏi trước qua Zalo 0963124791</a></div>
 
   <div id="cach-cai" style="margin-top:48px">
    <span class="nhan-nho">Cách cài</span>
-   <h2>Chép thư mục, hoặc dán một câu cho Claude</h2>
-   <p class="dan">Mỗi skill là một thư mục con trong <code>skills\</code>, có tệp <code>SKILL.md</code>. Chọn một trong hai cách.</p>
+   <h2>Giải nén, nhấp đúp tệp cài là xong</h2>
+   <p class="dan">Skill mua tại đây đi kèm tệp cài nhấp đúp cho Windows và Mac. Cách nhanh nhất:</p>
+   <ol class="buoc">
+    <li><strong>Giải nén</strong> tệp vừa tải về ra một thư mục bất kỳ.</li>
+    <li><strong>Nhấp đúp tệp cài</strong><span>Windows: <code>CAI-DAT.bat</code> · Mac: <code>cai-dat.command</code>. Sau đó khởi động lại Claude Code (đóng mở lại phiên).</span></li>
+   </ol>
+   <p class="dan" style="margin-top:22px">Muốn tự cài: mỗi skill là một thư mục con trong <code>skills\</code>, có tệp <code>SKILL.md</code>. Chọn một trong hai cách dưới.</p>
    <div class="luoi luoi-2">
     <div class="the">
      <h3>Cách 1: chép tay (3 bước)</h3>
@@ -498,7 +503,7 @@ dialog.mua::backdrop{background:rgba(10,25,40,.62)}
   </details>
   <details>
    <summary>Tôi không rành kỹ thuật, cài có khó không?</summary>
-   <p>Có hai cách: chép thư mục skill vào <code>%USERPROFILE%\.claude\skills\</code>, hoặc dán một câu để Claude tự chép (Claude xin phép trước khi chép). Sau đó gõ "Liệt kê các skill bạn đang có" để tự kiểm tra. Kẹt ở bước nào, anh/chị nhắn Zalo 0963124791.</p>
+   <p>Không khó. Với skill mua tại đây: giải nén tệp tải về, rồi nhấp đúp <code>CAI-DAT.bat</code> (Windows) hoặc <code>cai-dat.command</code> (Mac), sau đó khởi động lại Claude Code. Nếu muốn tự cài thì có hai cách: chép thư mục skill vào <code>%USERPROFILE%\.claude\skills\</code>, hoặc dán một câu để Claude tự chép (Claude xin phép trước khi chép). Sau đó gõ "Liệt kê các skill bạn đang có" để tự kiểm tra. Kẹt ở bước nào, anh/chị nhắn Zalo 0963124791.</p>
   </details>
   <details>
    <summary>Khuyến mãi mua 1 tặng 1 áp dụng thế nào?</summary>
@@ -550,11 +555,11 @@ dialog.mua::backdrop{background:rgba(10,25,40,.62)}
    <li><a href="https://github.com/minhaiglobal-stack" target="_blank" rel="noopener">GitHub</a></li>
   </ul>
   <p>Claude là sản phẩm của Anthropic; Giải pháp SubAgent Business không phải Anthropic và không bán tài khoản Claude.</p>
-  <p>Dữ liệu cá nhân: trang này không có biểu mẫu, không dùng cookie, không gắn mã theo dõi hay quảng cáo và không thu thập dữ liệu của anh/chị. Trang chỉ tải phông chữ Be Vietnam Pro từ Google Fonts; khi anh/chị bấm Mua, trang tải thêm ảnh mã QR từ img.vietqr.io, trong đó chỉ có số tiền và mã đơn, không có thông tin của anh/chị. Mã đơn được tạo ngay trên máy anh/chị, không lưu lại và không gửi đi đâu. Thông tin anh/chị gửi qua Zalo, Telegram hoặc email chỉ dùng để tư vấn và giao skill; vui lòng không gửi mật khẩu hay khóa API.</p>
+  <p>Dữ liệu cá nhân: trang này không có biểu mẫu, không dùng cookie, không gắn mã theo dõi hay quảng cáo và không thu thập thông tin cá nhân của anh/chị. Trang chỉ tải phông chữ Be Vietnam Pro từ Google Fonts; khi anh/chị bấm Mua, trang tải thêm ảnh mã QR từ img.vietqr.io, trong đó chỉ có số tiền và mã đơn, không có thông tin của anh/chị. Mã đơn được tạo ngay trên máy anh/chị. Khi anh/chị bấm Mua, trang gửi mã đơn, mã skill, số tiền và một khóa đơn ngẫu nhiên tới máy chủ giao hàng của Giải pháp SubAgent Business (Cloudflare Workers) để tự xác nhận thanh toán và chỉ cho đúng người giữ khóa xem link tải; máy chủ chỉ lưu bản băm của khóa đơn. Trang không gửi tên, số điện thoại hay số tài khoản của anh/chị. Để đối chiếu mã đơn, máy chủ nhận thông báo giao dịch từ SePay; thông báo này có thể kèm nội dung chuyển khoản, trong đó ngân hàng có thể ghi tên người chuyển. Máy chủ chỉ dùng để đối chiếu, không lưu và không ghi log các thông tin đó. Đơn chưa thanh toán tự xóa sau 48 giờ, đơn đã thanh toán tự xóa 4 ngày sau lúc thanh toán; bản ghi chống trùng giao dịch (chỉ gồm mã đơn và số tiền, không có dữ liệu cá nhân) giữ 30 ngày. Trang lưu tạm mã đơn và khóa đơn trong bộ nhớ phiên của trình duyệt (sessionStorage) trên máy anh/chị tối đa 30 phút để tải lại trang vẫn thấy nút Tải về; dữ liệu này tự mất khi đóng tab. Thông tin anh/chị gửi qua Zalo, Telegram hoặc email chỉ dùng để tư vấn và giao skill; vui lòng không gửi mật khẩu hay khóa API.</p>
  </div>
 </footer>
 
-<!-- HỘP THANH TOÁN QR (giai đoạn 1, J20261008-004): chỉ tạo mã đơn trên máy khách, không lưu, không gửi dữ liệu đi đâu -->
+<!-- HỘP THANH TOÁN QR (giai đoạn 1, J20261008-004) + giao hàng tự động (giai đoạn 2, J20261008-008): mã đơn tạo trên máy khách; mã đơn, mã skill, số tiền, khóa đơn gửi tới máy chủ giao hàng; không gửi tên/SĐT/STK -->
 <dialog class="mua" id="hop-mua" aria-labelledby="mua-tieu-de">
  <div class="mua-dau">
   <h2 id="mua-tieu-de" tabindex="-1">Thanh toán bằng mã QR</h2>
@@ -585,12 +590,13 @@ dialog.mua::backdrop{background:rgba(10,25,40,.62)}
   </ul>
   <p class="mua-canh">Nhập đúng nội dung chuyển khoản để được giao nhanh.</p>
   <ul class="mua-luu">
-   <li>Sau khi xác nhận tiền vào, anh/chị nhận link tải + tệp cài nhấp đúp (Windows và Mac).</li>
+   <li>Giữ nguyên hộp này: thường 5–30 giây sau khi tiền vào, nút "Tải về" tự hiện. Gói tải về có tệp cài nhấp đúp (Windows và Mac).</li>
+   <li>Link tải dùng 72 giờ, mỗi tệp tối đa 5 lượt.</li>
    <li>Cần tài khoản Claude trả phí riêng (từ khoảng 20 USD/tháng, anh/chị tự trả cho Anthropic; khoản này không nằm trong giá skill).</li>
   </ul>
   <a class="mua-xong" id="mua-da-ck" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Tôi đã chuyển khoản</a>
   <div role="status" aria-live="polite"><p class="mua-bao" id="mua-bao" hidden></p></div>
-  <p class="mua-nho">Chuyển nhầm số tiền hoặc nội dung? Nhắn Zalo <a href="https://zalo.me/0963124791" target="_blank" rel="noopener">0963124791</a> kèm ảnh biên lai để bên em xử lý. Trang không lưu và không gửi thông tin của anh/chị đi đâu.</p>
+  <p class="mua-nho">Chuyển nhầm số tiền hoặc nội dung? Nhắn Zalo <a href="https://zalo.me/0963124791" target="_blank" rel="noopener">0963124791</a> kèm ảnh biên lai để bên em xử lý. Trang không hỏi và không gửi tên, số điện thoại hay số tài khoản của anh/chị.</p>
  </div>
 </dialog>
 
@@ -776,7 +782,7 @@ dialog.mua::backdrop{background:rgba(10,25,40,.62)}
   var nd = noiDung(), q = tenQua();
   var tin = 'Chào shop, tôi đã chuyển khoản ' + tien(dang.gia) + ' mua ' + dang.ten +
    (q ? ', quà tặng: ' + q : '') + '. Mã đơn: ' + nd + '. Nhờ shop gửi link tải giúp tôi.';
-  var huongDan = 'Nhắn mã đơn ' + nd + ' cho shop, anh/chị nhận link tải trong giờ làm việc (8:00–22:00).';
+  var huongDan = 'Nút "Tải về" thường tự hiện 5–30 giây sau khi tiền vào. Nếu quá 10 phút chưa thấy, anh/chị nhắn mã đơn ' + nd + ' qua Zalo để bên em hỗ trợ.';
   chep(tin, function (ok) {
    bao.textContent = huongDan + (ok
     ? ' Tin nhắn mẫu đã được chép sẵn, anh/chị chỉ cần dán vào ô chat Zalo.'
@@ -784,6 +790,176 @@ dialog.mua::backdrop{background:rgba(10,25,40,.62)}
    bao.hidden = false;
   });
  });
+})();
+</script>
+<script>window.GIAO_HANG_CAU_HINH = { WORKER_URL: 'https://giao-hang-skill.minhaiglobal.workers.dev' };</script>
+<script>
+/* GIAO HÀNG TỰ ĐỘNG — nhúng inline từ san-pham/giao-hang-tu-dong/trang-mau/tich-hop.js bản 1.0.1 (QA J20261008-007).
+ * Chỉnh cho trang này (J20261008-008): chỉ đổi câu chữ hiển thị; nút "Tôi đã chuyển khoản" giữ nguyên chữ làm đường Zalo dự phòng.
+ * WORKER_URL rỗng -> không làm gì, trang giữ nguyên luồng Zalo (cũng là cách TẮT KHẨN).
+ * Chỉ gửi mã đơn, mã hàng, số tiền, khóa đơn ngẫu nhiên; không đọc, không gửi thông tin cá nhân.
+ */
+(function () {
+  'use strict';
+  var CH = window.GIAO_HANG_CAU_HINH || {};
+  var WORKER = String(CH.WORKER_URL || '').replace(/\/+$/, '');
+  if (!WORKER || !/^https:\/\//.test(WORKER)) return; // chưa cấu hình -> giữ luồng Zalo
+
+  var HOI_MOI_MS = 5000, HOI_TOI_DA_MS = 30 * 60 * 1000, CHO_GO_MS = 600;
+  var ZALO = 'https://zalo.me/0963124791';
+  var $ = function (id) { return document.getElementById(id); };
+  var hop = $('hop-mua'), oNd = $('mua-nd'), oTien = $('mua-tien'), nutCk = $('mua-da-ck');
+  if (!hop || !oNd || !oTien || !nutCk || !window.fetch) return;
+
+  // Khung trạng thái chèn ngay trên nút "Tôi đã chuyển khoản"
+  var khung = document.createElement('div');
+  khung.id = 'gh-trang-thai';
+  khung.setAttribute('role', 'status');
+  khung.setAttribute('aria-live', 'polite');
+  khung.style.cssText = 'margin:0;padding:12px;border-radius:10px;background:#f2f7ff;line-height:1.5';
+  khung.hidden = true;
+  nutCk.parentNode.insertBefore(khung, nutCk);
+
+  var donHienTai = null, henGio = null, henGo = null, batDauHoi = 0, phien = 0;
+
+  function datKhung(noiDung, nen) {
+    khung.innerHTML = '';
+    if (typeof noiDung === 'string') { var p = document.createElement('p'); p.style.margin = '0'; p.textContent = noiDung; khung.appendChild(p); }
+    else khung.appendChild(noiDung);
+    khung.style.background = nen || '#f2f7ff';
+    khung.hidden = false;
+  }
+  function veLuongZalo() {
+    // Có lỗi kết nối Worker -> trở về luồng cũ, không chặn khách
+    dungHoi();
+    khung.hidden = true;
+  }
+  function dungHoi() { if (henGio) { clearTimeout(henGio); henGio = null; } }
+
+  // Khóa đơn: 18 byte ngẫu nhiên (base64url, 24 ký tự) sinh trên máy khách cho từng đơn.
+  function sinhKhoaDon() {
+    var a = new Uint8Array(18), s = '', i;
+    window.crypto.getRandomValues(a);
+    for (i = 0; i < a.length; i++) s += String.fromCharCode(a[i]);
+    return window.btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+  // Lưu tạm trong sessionStorage (chỉ trên máy khách, tự mất khi đóng tab).
+  var KHOA_LUU = 'gh-don-gan-nhat';
+  function luuTam(d) { try { window.sessionStorage.setItem(KHOA_LUU, JSON.stringify({ ma_don: d.ma_don, khoa_don: d.khoa_don, luc: d.luc })); } catch (e) { /* trình duyệt chặn: bỏ qua */ } }
+  function docTam() { try { var v = JSON.parse(window.sessionStorage.getItem(KHOA_LUU) || 'null'); return v && v.ma_don && v.khoa_don ? v : null; } catch (e) { return null; } }
+  function xoaTam() { try { window.sessionStorage.removeItem(KHOA_LUU); } catch (e) { /* bỏ qua */ } }
+
+  // "SKL S07 A03 X7K2" -> { ma_don, ma_hang: ['S07','A03'] }
+  function docDon() {
+    var nd = (oNd.textContent || '').trim().toUpperCase().replace(/\s+/g, ' ');
+    var p = nd.split(' ');
+    if (p[0] !== 'SKL' || p.length < 3 || p.length > 4) return null;
+    var tien = parseInt((oTien.textContent || '').replace(/\D/g, ''), 10);
+    if (!tien) return null;
+    return { ma_don: nd, ma_hang: p.slice(1, -1), so_tien: tien };
+  }
+
+  function guiDon() {
+    var d = docDon();
+    if (!d || (donHienTai && donHienTai.ma_don === d.ma_don)) return;
+    var toi = ++phien;
+    dungHoi();
+    try { d.khoa_don = sinhKhoaDon(); } catch (e) { veLuongZalo(); return; }
+    d.luc = Date.now();
+    donHienTai = d;
+    datKhung('Đang ghi nhận đơn…');
+    fetch(WORKER + '/api/don', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ ma_don: d.ma_don, ma_hang: d.ma_hang, so_tien: d.so_tien, khoa_don: d.khoa_don }),
+      mode: 'cors',
+      credentials: 'omit',
+    }).then(function (r) {
+      if (toi !== phien) return;
+      if (r.status === 201) {
+        luuTam(d);
+        datKhung('Đang chờ tiền vào… (thường 5–30 giây sau khi chuyển). Anh/chị quét mã QR, chuyển đúng nội dung và giữ nguyên hộp này: nút "Tải về" sẽ tự hiện ở đây.');
+        batDauHoi = Date.now();
+        henGio = setTimeout(function () { hoi(toi); }, HOI_MOI_MS);
+      } else { veLuongZalo(); }
+    }).catch(function () { if (toi === phien) veLuongZalo(); });
+  }
+
+  function hoi(toi) {
+    if (toi !== phien || !donHienTai) return;
+    if (Date.now() - batDauHoi > HOI_TOI_DA_MS) {
+      datKhung(nutZalo('Trang đã chờ 30 phút mà chưa thấy tiền vào. Nếu anh/chị đã chuyển khoản, bấm nút dưới để nhắn Zalo kèm mã đơn ' + donHienTai.ma_don + ', bên em gửi link tải ngay.'), '#fff7e6');
+      return;
+    }
+    fetch(WORKER + '/api/don/' + encodeURIComponent(donHienTai.ma_don.replace(/\s+/g, '')), {
+      mode: 'cors', credentials: 'omit', cache: 'no-store', headers: { 'x-khoa-don': donHienTai.khoa_don },
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (toi !== phien) return;
+        if (j.trang_thai === 'khong_tim_thay') { xoaTam(); veLuongZalo(); return; }
+        if (j.trang_thai === 'da_thanh_toan' && j.tep && j.tep.length) { hienTai(j); return; }
+        if (j.trang_thai === 'can_ho_tro') {
+          datKhung(nutZalo('Bên em đã nhận ' + dinhTien(j.da_nhan) + ', chưa đủ ' + dinhTien(j.so_tien) + ' của đơn ' + donHienTai.ma_don + '. Anh/chị bấm nút dưới để nhắn Zalo kèm ảnh biên lai, bên em xử lý ngay.'), '#fff7e6');
+        }
+        henGio = setTimeout(function () { hoi(toi); }, HOI_MOI_MS);
+      })
+      .catch(function () { if (toi === phien) henGio = setTimeout(function () { hoi(toi); }, HOI_MOI_MS * 2); });
+  }
+
+  function dinhTien(n) { return String(Number(n) || 0).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ'; }
+
+  function nutZalo(loi) {
+    var k = document.createElement('div');
+    var p = document.createElement('p'); p.style.margin = '0 0 8px'; p.textContent = loi; k.appendChild(p);
+    var a = document.createElement('a');
+    a.href = ZALO; a.target = '_blank'; a.rel = 'noopener'; a.className = 'mua-xong';
+    a.textContent = 'Gặp hỗ trợ qua Zalo';
+    k.appendChild(a);
+    return k;
+  }
+
+  function hienTai(j) {
+    dungHoi();
+    var k = document.createElement('div');
+    var p = document.createElement('p'); p.style.margin = '0 0 8px'; p.style.fontWeight = '700';
+    p.textContent = 'Đã nhận tiền, cảm ơn anh/chị! Bấm "Tải về" cho từng tệp bên dưới.';
+    k.appendChild(p);
+    j.tep.forEach(function (t) {
+      if (typeof t.url !== 'string' || t.url.indexOf(WORKER + '/tai/') !== 0) return; // chỉ nhận link của Worker
+      var a = document.createElement('a');
+      a.href = t.url; a.className = 'mua-xong'; a.rel = 'noopener';
+      a.setAttribute('download', '');
+      a.style.display = 'block'; a.style.margin = '6px 0';
+      a.textContent = 'Tải về: ' + (t.ten || t.tep);
+      k.appendChild(a);
+    });
+    var c = document.createElement('p'); c.style.margin = '8px 0 0';
+    c.textContent = 'Giải nén rồi nhấp đúp CAI-DAT.bat (Windows) / cai-dat.command (Mac).';
+    k.appendChild(c);
+    var n = document.createElement('p'); n.style.margin = '8px 0 0'; n.style.fontSize = '.9em';
+    n.textContent = 'Link dùng được 72 giờ, mỗi tệp tải tối đa ' + (j.luot_toi_da_moi_tep || 5) + ' lần. Hãy lưu mã đơn ' + donHienTai.ma_don + '; cần tải lại thì nhắn Zalo kèm mã đơn.';
+    k.appendChild(n);
+    datKhung(k, '#eaf8ee');
+    if (!hop.open && typeof hop.showModal === 'function') { try { hop.showModal(); } catch (e) { /* bỏ qua */ } }
+  }
+
+  // Khách tải lại trang trong vòng 30 phút: lấy lại đơn gần nhất từ sessionStorage và hỏi tiếp.
+  (function tiepTuc() {
+    var cu = docTam();
+    if (!cu) return;
+    if (!(Date.now() - Number(cu.luc) < HOI_TOI_DA_MS)) { xoaTam(); return; }
+    donHienTai = { ma_don: cu.ma_don, khoa_don: cu.khoa_don, luc: Number(cu.luc) };
+    batDauHoi = donHienTai.luc;
+    var toi = ++phien;
+    henGio = setTimeout(function () { hoi(toi); }, 0);
+  })();
+
+  // Theo dõi nội dung chuyển khoản do trang hiển thị (đổi skill / chọn quà -> đơn mới)
+  new MutationObserver(function () {
+    if (henGo) clearTimeout(henGo);
+    henGo = setTimeout(guiDon, CHO_GO_MS);
+  }).observe(oNd, { childList: true, characterData: true, subtree: true });
 })();
 </script>
 
