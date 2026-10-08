@@ -146,6 +146,41 @@ details p{padding:0 0 16px;color:var(--phu)}
  .ds-skill{grid-template-columns:repeat(2,1fr)}
  .khoi-goi .dau-goi{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:6px 16px}
 }
+/* hộp thanh toán QR */
+[hidden]{display:none!important}
+button,select{font:inherit}
+button:focus-visible,select:focus-visible{outline:3px solid #ffd27a;outline-offset:2px}
+dialog.mua{border:0;border-radius:16px;padding:0;width:min(520px,calc(100vw - 16px));max-width:none;max-height:calc(100vh - 16px);overflow:auto;color:var(--chu);background:#fff;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog.mua[open]{position:fixed;inset:0;margin:auto;z-index:50}
+dialog.mua::backdrop{background:rgba(10,25,40,.62)}
+@supports(max-height:100dvh){dialog.mua{max-height:calc(100dvh - 16px)}}
+.mua-dau{position:sticky;top:0;z-index:1;background:#fff;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--vien)}
+.mua-dau h2{font-size:1.15rem;margin:0;line-height:1.3}
+.mua-dong{flex:none;width:42px;height:42px;border:0;border-radius:50%;background:var(--nhat);color:var(--chinh);font-size:1.5rem;line-height:1;cursor:pointer}
+.mua-than{padding:14px 16px 18px;display:grid;gap:14px}
+.mua-sp{background:var(--nhat);border-radius:12px;padding:12px 14px}
+.mua-sp .ten-sp{font-weight:700}
+.mua-sp .gia-sp{font-size:1.35rem;font-weight:800;color:var(--chinh)}
+.mua-qua label{display:block;font-weight:700;margin-bottom:6px}
+.mua-qua select{width:100%;padding:10px;border:2px solid var(--nhan);border-radius:10px;background:#fff;color:var(--chu)}
+.mua-qua p{font-size:.86rem;color:var(--phu);margin-top:6px}
+.mua-qr{text-align:center}
+.mua-qr img{display:block;width:100%;max-width:280px;height:auto;min-height:120px;margin:0 auto;border:1px solid var(--vien);border-radius:12px;background:#fff}
+.mua-qr .du-phong{background:#fff8f3;border:1px dashed var(--nhan);border-radius:10px;padding:12px;font-size:.93rem}
+.mua-qr .qr-ghi{font-size:.86rem;color:var(--phu);margin-top:6px}
+.mua-tt{list-style:none;border:1px solid var(--vien);border-radius:12px;overflow:hidden}
+.mua-tt li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border-top:1px solid var(--vien)}
+.mua-tt li:first-child{border-top:0}
+.mua-tt .nhan{display:block;font-size:.8rem;color:var(--phu)}
+.mua-tt .gt{display:block;font-weight:700;word-break:break-word}
+.mua-tt .gt-nd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:1.05rem;color:#b4521f;letter-spacing:.03em}
+.nut-sao{flex:none;border:2px solid var(--vua);background:#fff;color:var(--vua);border-radius:8px;padding:6px 12px;font-weight:700;font-size:.85rem;cursor:pointer;min-height:38px}
+.mua-canh{background:#fff8f3;border-left:5px solid var(--nhan);border-radius:8px;padding:10px 12px;font-weight:700;font-size:.95rem}
+.mua-luu{padding-left:18px;font-size:.92rem;color:var(--chu)}
+.mua-luu li{margin-bottom:4px}
+.mua-xong{display:block;width:100%;text-align:center;text-decoration:none;background:var(--nhan);color:#fff;font-weight:700;padding:14px 18px;border-radius:12px}
+.mua-bao{background:#eefaf1;border:1px solid #9fd7ae;border-radius:10px;padding:12px;font-size:.95rem}
+.mua-nho{font-size:.84rem;color:var(--phu)}
 </style>
 </head>
 <body>
@@ -233,7 +268,7 @@ details p{padding:0 0 16px;color:var(--phu)}
  <div class="khung">
   <span class="nhan-nho">Danh sách skill</span>
   <h2>4 gói, 35 skill: chọn đúng việc anh/chị đang cần</h2>
-  <p class="dan">Mỗi skill trong 3 gói trả phí đều bán lẻ 129.000đ, hoặc mua cả gói 10 skill 299.000đ. Bấm nút để nhắn Zalo, ghi tên skill hoặc tên gói anh/chị chọn.</p>
+  <p class="dan">Mỗi skill trong 3 gói trả phí đều bán lẻ 129.000đ, hoặc mua cả gói 10 skill 299.000đ. Bấm nút Mua để hiện mã QR chuyển khoản có sẵn số tiền và mã đơn; chuyển xong, nhắn mã đơn qua Zalo để nhận link tải.</p>
 
   <!-- Gói Starter -->
   <div class="khoi-goi mien-phi" id="goi-starter">
@@ -262,18 +297,18 @@ details p{padding:0 0 16px;color:var(--phu)}
     <span class="gia-goi">299.000đ cả gói · 129.000đ/skill lẻ</span>
    </div>
    <ul class="ds-skill">
-    <li><span class="ten">Trả lời đánh giá shop <code>tra-loi-danh-gia-shop</code></span><span class="mo-ta">Nháp trả lời từng đánh giá 1–5 sao, mỗi câu khác nhau, đánh dấu ca cần chủ shop tự xử lý. Không tự đăng.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Kịch bản livestream bán hàng <code>kich-ban-livestream-ban-hang</code></span><span class="mo-ta">Kịch bản live 30–60 phút chia theo từng phút, chỉ dùng sản phẩm và ưu đãi chủ shop đưa.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Tiêu đề SEO hàng loạt <code>tieu-de-seo-san-pham-hang-loat</code></span><span class="mo-ta">Đọc bảng CSV sản phẩm, viết tiêu đề SEO và từ khóa cho từng sàn, xuất lại CSV để chủ shop kiểm và tải lên.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Chăm sóc sau mua <code>cham-soc-sau-mua</code></span><span class="mo-ta">Chuỗi tin nhắn nháp sau khi giao hàng: cảm ơn, hướng dẫn dùng, mời đánh giá đúng chính sách sàn, nhắc mua lại.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Báo cáo doanh thu tuần <code>bao-cao-doanh-thu-tuan</code></span><span class="mo-ta">Từ file xuất đơn hàng: doanh thu, số đơn, sản phẩm bán chạy, đơn hoàn/hủy, gợi ý việc nên làm. Không bịa số.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Kịch bản video ngắn sản phẩm <code>kich-ban-video-ngan-san-pham</code></span><span class="mo-ta">Kịch bản 15–30 giây: hook 3 giây đầu, cảnh quay, lời thoại, chữ trên màn hình, lời kêu gọi mua hàng.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Phản hồi khiếu nại, đổi trả <code>phan-hoi-khieu-nai-doi-tra</code></span><span class="mo-ta">Nháp phản hồi theo đúng chính sách đổi trả của shop, liệt kê thông tin cần xin thêm, chuyển chủ shop quyết hoàn tiền hay đổi hàng.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Tên và mô tả combo khuyến mãi <code>ten-va-mo-ta-combo-khuyen-mai</code></span><span class="mo-ta">Đề xuất cách ghép combo, đặt tên, viết mô tả, kèm biên lợi nhuận ước tính từ giá vốn và giá bán chủ shop đưa.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Kế hoạch flash sale <code>ke-hoach-flash-sale</code></span><span class="mo-ta">Kế hoạch ngày đôi, flash sale: lịch chuẩn bị, sản phẩm mồi, nội dung, checklist kho và đóng gói. Không đổi giá thay chủ shop.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Mẫu tin nhắn chốt đơn <code>mau-tin-nhan-chot-don</code></span><span class="mo-ta">Bộ câu chốt đơn và cách xử lý khi khách từ chối, trung thực, theo sản phẩm và chính sách thật của shop.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Trả lời đánh giá shop <code>tra-loi-danh-gia-shop</code></span><span class="mo-ta">Nháp trả lời từng đánh giá 1–5 sao, mỗi câu khác nhau, đánh dấu ca cần chủ shop tự xử lý. Không tự đăng.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Kịch bản livestream bán hàng <code>kich-ban-livestream-ban-hang</code></span><span class="mo-ta">Kịch bản live 30–60 phút chia theo từng phút, chỉ dùng sản phẩm và ưu đãi chủ shop đưa.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Tiêu đề SEO hàng loạt <code>tieu-de-seo-san-pham-hang-loat</code></span><span class="mo-ta">Đọc bảng CSV sản phẩm, viết tiêu đề SEO và từ khóa cho từng sàn, xuất lại CSV để chủ shop kiểm và tải lên.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Chăm sóc sau mua <code>cham-soc-sau-mua</code></span><span class="mo-ta">Chuỗi tin nhắn nháp sau khi giao hàng: cảm ơn, hướng dẫn dùng, mời đánh giá đúng chính sách sàn, nhắc mua lại.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Báo cáo doanh thu tuần <code>bao-cao-doanh-thu-tuan</code></span><span class="mo-ta">Từ file xuất đơn hàng: doanh thu, số đơn, sản phẩm bán chạy, đơn hoàn/hủy, gợi ý việc nên làm. Không bịa số.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Kịch bản video ngắn sản phẩm <code>kich-ban-video-ngan-san-pham</code></span><span class="mo-ta">Kịch bản 15–30 giây: hook 3 giây đầu, cảnh quay, lời thoại, chữ trên màn hình, lời kêu gọi mua hàng.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Phản hồi khiếu nại, đổi trả <code>phan-hoi-khieu-nai-doi-tra</code></span><span class="mo-ta">Nháp phản hồi theo đúng chính sách đổi trả của shop, liệt kê thông tin cần xin thêm, chuyển chủ shop quyết hoàn tiền hay đổi hàng.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Tên và mô tả combo khuyến mãi <code>ten-va-mo-ta-combo-khuyen-mai</code></span><span class="mo-ta">Đề xuất cách ghép combo, đặt tên, viết mô tả, kèm biên lợi nhuận ước tính từ giá vốn và giá bán chủ shop đưa.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Kế hoạch flash sale <code>ke-hoach-flash-sale</code></span><span class="mo-ta">Kế hoạch ngày đôi, flash sale: lịch chuẩn bị, sản phẩm mồi, nội dung, checklist kho và đóng gói. Không đổi giá thay chủ shop.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Mẫu tin nhắn chốt đơn <code>mau-tin-nhan-chot-don</code></span><span class="mo-ta">Bộ câu chốt đơn và cách xử lý khi khách từ chối, trung thực, theo sản phẩm và chính sách thật của shop.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
    </ul>
-   <div class="nut-nhom"><a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua gói 299k: Shop online</a></div>
+   <div class="nut-nhom"><a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="GSHOP">Mua gói 299k: Shop online</a></div>
   </div>
 
   <!-- Gói Tạo ảnh -->
@@ -284,18 +319,18 @@ details p{padding:0 0 16px;color:var(--phu)}
     <span class="yeu-cau">Cần trình duyệt Edge hoặc Chrome để xuất PNG. Skill viết prompt dùng với công cụ ảnh AI của riêng anh/chị.</span>
    </div>
    <ul class="ds-skill">
-    <li><span class="ten">Ảnh bài đăng mạng xã hội <code>anh-bai-dang-mang-xa-hoi</code></span><span class="mo-ta">Ảnh 1080x1350 hoặc 1080x1080 có tiêu đề, 1–3 ý chính, màu và tên thương hiệu, chữ tiếng Việt chuẩn.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Carousel kiến thức <code>carousel-kien-thuc</code></span><span class="mo-ta">Bộ 5–10 slide vuốt ngang đồng bộ màu, phông, có đánh số trang, slide bìa và slide kết.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Thumbnail YouTube <code>thumbnail-youtube</code></span><span class="mo-ta">3 phương án ảnh bìa 1280x720, chữ lớn tối đa 6 từ, đúng nội dung video, không giật tít sai sự thật.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Infographic quy trình <code>infographic-quy-trinh</code></span><span class="mo-ta">Quy trình nhiều bước, bảng so sánh hoặc số liệu thành infographic; biểu đồ đúng tỉ lệ, luôn ghi nguồn.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Banner khuyến mãi, sự kiện <code>banner-khuyen-mai-su-kien</code></span><span class="mo-ta">Bộ banner đồng bộ cho ảnh bìa Facebook, hero website, story 9:16, bài vuông; chỉ dùng đúng ưu đãi anh/chị đưa.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Bộ nhận diện mini <code>bo-nhan-dien-mini</code></span><span class="mo-ta">Logo chữ hoặc hình học SVG, bảng màu mã HEX, cặp phông và trang hướng dẫn áp dụng; có bước kiểm tránh giống thương hiệu có thật.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Prompt bối cảnh sản phẩm <code>prompt-boi-canh-san-pham</code></span><span class="mo-ta">Bộ prompt song ngữ Anh - Việt đặt sản phẩm vào nhiều bối cảnh, giữ đúng hình dáng, màu, nhãn sản phẩm thật. Không tự gọi công cụ nào.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Prompt ảnh minh họa bài viết <code>prompt-anh-minh-hoa-bai-viet</code></span><span class="mo-ta">Đọc bài viết, chọn ý đáng minh họa, lập bộ quy tắc phong cách và viết prompt song ngữ cho từng ảnh. Không tự gọi công cụ nào.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Ảnh trích dẫn chia sẻ <code>anh-trich-dan-chia-se</code></span><span class="mo-ta">Biến câu nói của founder, chuyên gia nội bộ thành ảnh trích dẫn, giữ nguyên văn, ghi đúng tên và vai trò người nói.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Bảng giá, menu dịch vụ <code>bang-gia-menu-dich-vu</code></span><span class="mo-ta">Ảnh bảng giá hoặc menu cho spa, quán, khóa học từ dữ liệu anh/chị đưa; căn giá thẳng cột, giữ đúng từng con số.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Ảnh bài đăng mạng xã hội <code>anh-bai-dang-mang-xa-hoi</code></span><span class="mo-ta">Ảnh 1080x1350 hoặc 1080x1080 có tiêu đề, 1–3 ý chính, màu và tên thương hiệu, chữ tiếng Việt chuẩn.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Carousel kiến thức <code>carousel-kien-thuc</code></span><span class="mo-ta">Bộ 5–10 slide vuốt ngang đồng bộ màu, phông, có đánh số trang, slide bìa và slide kết.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Thumbnail YouTube <code>thumbnail-youtube</code></span><span class="mo-ta">3 phương án ảnh bìa 1280x720, chữ lớn tối đa 6 từ, đúng nội dung video, không giật tít sai sự thật.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Infographic quy trình <code>infographic-quy-trinh</code></span><span class="mo-ta">Quy trình nhiều bước, bảng so sánh hoặc số liệu thành infographic; biểu đồ đúng tỉ lệ, luôn ghi nguồn.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Banner khuyến mãi, sự kiện <code>banner-khuyen-mai-su-kien</code></span><span class="mo-ta">Bộ banner đồng bộ cho ảnh bìa Facebook, hero website, story 9:16, bài vuông; chỉ dùng đúng ưu đãi anh/chị đưa.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Bộ nhận diện mini <code>bo-nhan-dien-mini</code></span><span class="mo-ta">Logo chữ hoặc hình học SVG, bảng màu mã HEX, cặp phông và trang hướng dẫn áp dụng; có bước kiểm tránh giống thương hiệu có thật.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Prompt bối cảnh sản phẩm <code>prompt-boi-canh-san-pham</code></span><span class="mo-ta">Bộ prompt song ngữ Anh - Việt đặt sản phẩm vào nhiều bối cảnh, giữ đúng hình dáng, màu, nhãn sản phẩm thật. Không tự gọi công cụ nào.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Prompt ảnh minh họa bài viết <code>prompt-anh-minh-hoa-bai-viet</code></span><span class="mo-ta">Đọc bài viết, chọn ý đáng minh họa, lập bộ quy tắc phong cách và viết prompt song ngữ cho từng ảnh. Không tự gọi công cụ nào.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Ảnh trích dẫn chia sẻ <code>anh-trich-dan-chia-se</code></span><span class="mo-ta">Biến câu nói của founder, chuyên gia nội bộ thành ảnh trích dẫn, giữ nguyên văn, ghi đúng tên và vai trò người nói.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Bảng giá, menu dịch vụ <code>bang-gia-menu-dich-vu</code></span><span class="mo-ta">Ảnh bảng giá hoặc menu cho spa, quán, khóa học từ dữ liệu anh/chị đưa; căn giá thẳng cột, giữ đúng từng con số.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
    </ul>
-   <div class="nut-nhom"><a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua gói 299k: Tạo ảnh</a></div>
+   <div class="nut-nhom"><a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="GANH">Mua gói 299k: Tạo ảnh</a></div>
   </div>
 
   <!-- Gói Tạo video -->
@@ -306,18 +341,18 @@ details p{padding:0 0 16px;color:var(--phu)}
     <span class="yeu-cau">Cần FFmpeg (phần mềm miễn phí) cho các skill dựng video; 3 skill kế hoạch quay, kịch bản dài và prompt video AI không cần FFmpeg.</span>
    </div>
    <ul class="ds-skill">
-    <li><span class="ten">Video ảnh trượt sản phẩm <code>video-anh-truot-san-pham</code></span><span class="mo-ta">5–15 ảnh sản phẩm thành video 9:16 hoặc 1:1 có chuyển cảnh, chữ giá/ưu đãi và nhạc của anh/chị.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Phụ đề tiếng Việt từ file lời <code>phu-de-tieng-viet-tu-file-loi</code></span><span class="mo-ta">Lời thoại có sẵn thành tệp phụ đề .srt căn thời gian, kèm lệnh gắn phụ đề cứng hoặc mềm.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Chuẩn hóa video đa nền tảng <code>chuan-hoa-video-da-nen-tang</code></span><span class="mo-ta">Một video gốc ra nhiều bản đúng khung TikTok, Reels, Shorts, YouTube, Facebook, Zalo; chuẩn âm lượng, giới hạn dung lượng.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Mở đầu, kết thúc thương hiệu <code>mo-dau-ket-thuc-thuong-hieu</code></span><span class="mo-ta">Intro, outro 3–5 giây có logo, màu, khẩu hiệu của anh/chị, ghép vào đầu và cuối video chính.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Video chữ động kiến thức <code>video-chu-dong-kien-thuc</code></span><span class="mo-ta">Bài viết ngắn thành video chữ động 20–45 giây, không cần quay hay lộ mặt.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Kế hoạch quay video ngắn <code>ke-hoach-quay-video-ngan</code></span><span class="mo-ta">Kế hoạch một buổi quay điện thoại 2–4 giờ ra 10 video: gom cảnh, góc máy, ánh sáng, lời thoại, lịch, checklist.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Kịch bản video dài có chương <code>kich-ban-video-dai-co-chuong</code></span><span class="mo-ta">Kịch bản YouTube 8–15 phút có chương, mốc thời gian, gợi ý B-roll, phần mô tả và 3 phương án tiêu đề.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Prompt video AI cảnh quay <code>prompt-video-ai-canh-quay</code></span><span class="mo-ta">Storyboard và prompt từng cảnh tiếng Anh kèm bản dịch, giữ nhất quán nhân vật, dùng cho công cụ video AI anh/chị tự chọn.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Làm sạch âm thanh video <code>lam-sach-am-thanh-video</code></span><span class="mo-ta">Giảm ồn nền, chuẩn hóa âm lượng, cắt khoảng lặng đầu/cuối bằng bộ lọc có sẵn của FFmpeg.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
-    <li><span class="ten">Video so sánh trước sau <code>video-so-sanh-truoc-sau</code></span><span class="mo-ta">Ảnh hoặc clip thật trước và sau thành video chia đôi màn hình hoặc hiệu ứng gạt, có nhãn TRƯỚC/SAU. Không bịa kết quả.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua lẻ</a></li>
+    <li><span class="ten">Video ảnh trượt sản phẩm <code>video-anh-truot-san-pham</code></span><span class="mo-ta">5–15 ảnh sản phẩm thành video 9:16 hoặc 1:1 có chuyển cảnh, chữ giá/ưu đãi và nhạc của anh/chị.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Phụ đề tiếng Việt từ file lời <code>phu-de-tieng-viet-tu-file-loi</code></span><span class="mo-ta">Lời thoại có sẵn thành tệp phụ đề .srt căn thời gian, kèm lệnh gắn phụ đề cứng hoặc mềm.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Chuẩn hóa video đa nền tảng <code>chuan-hoa-video-da-nen-tang</code></span><span class="mo-ta">Một video gốc ra nhiều bản đúng khung TikTok, Reels, Shorts, YouTube, Facebook, Zalo; chuẩn âm lượng, giới hạn dung lượng.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Mở đầu, kết thúc thương hiệu <code>mo-dau-ket-thuc-thuong-hieu</code></span><span class="mo-ta">Intro, outro 3–5 giây có logo, màu, khẩu hiệu của anh/chị, ghép vào đầu và cuối video chính.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Video chữ động kiến thức <code>video-chu-dong-kien-thuc</code></span><span class="mo-ta">Bài viết ngắn thành video chữ động 20–45 giây, không cần quay hay lộ mặt.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Kế hoạch quay video ngắn <code>ke-hoach-quay-video-ngan</code></span><span class="mo-ta">Kế hoạch một buổi quay điện thoại 2–4 giờ ra 10 video: gom cảnh, góc máy, ánh sáng, lời thoại, lịch, checklist.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Kịch bản video dài có chương <code>kich-ban-video-dai-co-chuong</code></span><span class="mo-ta">Kịch bản YouTube 8–15 phút có chương, mốc thời gian, gợi ý B-roll, phần mô tả và 3 phương án tiêu đề.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Prompt video AI cảnh quay <code>prompt-video-ai-canh-quay</code></span><span class="mo-ta">Storyboard và prompt từng cảnh tiếng Anh kèm bản dịch, giữ nhất quán nhân vật, dùng cho công cụ video AI anh/chị tự chọn.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Làm sạch âm thanh video <code>lam-sach-am-thanh-video</code></span><span class="mo-ta">Giảm ồn nền, chuẩn hóa âm lượng, cắt khoảng lặng đầu/cuối bằng bộ lọc có sẵn của FFmpeg.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
+    <li><span class="ten">Video so sánh trước sau <code>video-so-sanh-truoc-sau</code></span><span class="mo-ta">Ảnh hoặc clip thật trước và sau thành video chia đôi màn hình hoặc hiệu ứng gạt, có nhãn TRƯỚC/SAU. Không bịa kết quả.</span><a class="nut-mua" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="le">Mua lẻ 129k</a></li>
    </ul>
-   <div class="nut-nhom"><a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua gói 299k: Tạo video</a></div>
+   <div class="nut-nhom"><a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener" data-mua="GVID">Mua gói 299k: Tạo video</a></div>
   </div>
  </div>
 </section>
@@ -327,7 +362,7 @@ details p{padding:0 0 16px;color:var(--phu)}
  <div class="khung">
   <span class="nhan-nho">Bảng giá</span>
   <h2>Thử miễn phí trước, mua thêm đúng skill anh/chị cần</h2>
-  <p class="dan">Giá chính thức của Sàn Skill SubAgent. Thanh toán chuyển khoản; bên em giao tệp sau khi nhận chuyển khoản.</p>
+  <p class="dan">Giá chính thức của Sàn Skill SubAgent. Thanh toán chuyển khoản bằng mã QR; bên em gửi link tải sau khi xác nhận tiền vào.</p>
   <div class="luoi luoi-3">
    <div class="the goi moi">
     <span class="nhan-goi">Bắt đầu ở đây</span>
@@ -342,7 +377,7 @@ details p{padding:0 0 16px;color:var(--phu)}
     <div class="gia">129.000đ</div>
     <div class="gia-phu">Mỗi skill · chưa gồm thuê bao Claude</div>
     <ul><li>1 skill theo ngành/việc</li><li>Hướng dẫn cài và câu dùng mẫu</li></ul>
-    <a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua skill lẻ qua Zalo</a>
+    <a class="nut nut-vien" href="#goi-shop-online">Chọn skill lẻ để mua</a>
    </div>
    <div class="the goi chinh">
     <span class="nhan-goi">Trọn bộ một ngành</span>
@@ -350,7 +385,7 @@ details p{padding:0 0 16px;color:var(--phu)}
     <div class="gia">299.000đ</div>
     <div class="gia-phu">Mỗi gói · chưa gồm thuê bao Claude</div>
     <ul><li>10 skill cùng một ngành/việc (hiện có: Shop online, Tạo ảnh, Tạo video)</li><li>Mẫu quy trình đi kèm</li><li>Hướng dẫn cài</li></ul>
-    <a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Mua gói 10 skill qua Zalo</a>
+    <a class="nut nut-vien" href="#goi-shop-online">Chọn gói 10 skill để mua</a>
    </div>
   </div>
 
@@ -360,6 +395,7 @@ details p{padding:0 0 16px;color:var(--phu)}
     <li>Thời gian: từ 10/10/2026 đến hết 31/10/2026.</li>
     <li>Mua 1 skill lẻ, tặng 1 skill lẻ tự chọn có giá trị không cao hơn skill đã mua.</li>
     <li>Chỉ áp dụng cho skill lẻ. Không áp dụng cho Gói 10 skill.</li>
+    <li>Trong thời gian khuyến mãi, khi bấm "Mua lẻ", anh/chị chọn luôn skill quà trong hộp thanh toán; mã skill quà được thêm vào nội dung chuyển khoản.</li>
    </ul>
   </div>
 
@@ -378,14 +414,14 @@ details p{padding:0 0 16px;color:var(--phu)}
 <section id="cach-mua" style="background:#fff">
  <div class="khung">
   <span class="nhan-nho">Cách mua</span>
-  <h2>3 bước, nhắn Zalo là xong</h2>
-  <p class="dan">Trang này không có cổng thanh toán và không có biểu mẫu thu thông tin. Anh/chị mua trực tiếp qua Zalo với bên em.</p>
+  <h2>3 bước: bấm Mua, quét QR, nhắn mã đơn</h2>
+  <p class="dan">Trang này không có cổng thanh toán và không có biểu mẫu thu thông tin. Mã QR chuyển khoản có sẵn số tiền và mã đơn; bên em đối chiếu tiền vào theo mã đơn rồi gửi link tải.</p>
   <ol class="buoc">
-   <li><strong>Nhắn Zalo 0963124791</strong><span>Ghi tên skill hoặc tên gói anh/chị chọn, ví dụ "Mua lẻ lam-sach-am-thanh-video" hoặc "Mua gói Tạo ảnh".</span></li>
-   <li><strong>Chuyển khoản</strong><span>Bên em gửi số tiền và thông tin chuyển khoản qua Zalo.</span></li>
-   <li><strong>Nhận tệp zip và hướng dẫn cài</strong><span>Sau khi nhận chuyển khoản, bên em gửi tệp nén kèm hướng dẫn cài qua Zalo hoặc Telegram.</span></li>
+   <li><strong>Bấm "Mua lẻ" hoặc "Mua gói"</strong><span>Hộp thanh toán hiện tên skill hoặc gói, giá và mã đơn, ví dụ "SKL S07 X7K2". Trong thời gian khuyến mãi, anh/chị chọn luôn skill quà ở đây.</span></li>
+   <li><strong>Quét QR chuyển khoản</strong><span>Mở ứng dụng ngân hàng và quét mã: số tiền và nội dung đã điền sẵn. Không quét được thì chuyển tay tới MB, số tài khoản 15188888888, chủ tài khoản NGUYEN TUAN MINH, ghi đúng nội dung là mã đơn.</span></li>
+   <li><strong>Nhắn mã đơn qua Zalo, nhận link tải</strong><span>Bấm "Tôi đã chuyển khoản" để mở Zalo 0963124791 và gửi mã đơn. Sau khi xác nhận tiền vào, bên em gửi link tải kèm tệp cài nhấp đúp trong giờ làm việc (8:00–22:00).</span></li>
   </ol>
-  <div class="nut-nhom" style="margin-top:18px"><a class="nut nut-chinh" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Đặt mua qua Zalo 0963124791</a></div>
+  <div class="nut-nhom" style="margin-top:18px"><a class="nut nut-chinh" href="#goi-shop-online">Chọn skill để mua</a><a class="nut nut-vien" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Hỏi trước qua Zalo 0963124791</a></div>
 
   <div id="cach-cai" style="margin-top:48px">
    <span class="nhan-nho">Cách cài</span>
@@ -514,9 +550,242 @@ details p{padding:0 0 16px;color:var(--phu)}
    <li><a href="https://github.com/minhaiglobal-stack" target="_blank" rel="noopener">GitHub</a></li>
   </ul>
   <p>Claude là sản phẩm của Anthropic; Giải pháp SubAgent Business không phải Anthropic và không bán tài khoản Claude.</p>
-  <p>Dữ liệu cá nhân: trang này không có biểu mẫu, không dùng cookie, không gắn mã theo dõi hay quảng cáo và không thu thập dữ liệu của anh/chị. Trang chỉ tải phông chữ Be Vietnam Pro từ Google Fonts. Thông tin anh/chị gửi qua Zalo, Telegram hoặc email chỉ dùng để tư vấn và giao skill; vui lòng không gửi mật khẩu hay khóa API.</p>
+  <p>Dữ liệu cá nhân: trang này không có biểu mẫu, không dùng cookie, không gắn mã theo dõi hay quảng cáo và không thu thập dữ liệu của anh/chị. Trang chỉ tải phông chữ Be Vietnam Pro từ Google Fonts; khi anh/chị bấm Mua, trang tải thêm ảnh mã QR từ img.vietqr.io, trong đó chỉ có số tiền và mã đơn, không có thông tin của anh/chị. Mã đơn được tạo ngay trên máy anh/chị, không lưu lại và không gửi đi đâu. Thông tin anh/chị gửi qua Zalo, Telegram hoặc email chỉ dùng để tư vấn và giao skill; vui lòng không gửi mật khẩu hay khóa API.</p>
  </div>
 </footer>
+
+<!-- HỘP THANH TOÁN QR (giai đoạn 1, J20261008-004): chỉ tạo mã đơn trên máy khách, không lưu, không gửi dữ liệu đi đâu -->
+<dialog class="mua" id="hop-mua" aria-labelledby="mua-tieu-de">
+ <div class="mua-dau">
+  <h2 id="mua-tieu-de" tabindex="-1">Thanh toán bằng mã QR</h2>
+  <button type="button" class="mua-dong" id="mua-dong" aria-label="Đóng hộp thanh toán">&times;</button>
+ </div>
+ <div class="mua-than">
+  <div class="mua-sp">
+   <div class="ten-sp" id="mua-ten">Skill lẻ</div>
+   <div class="gia-sp" id="mua-gia">129.000đ</div>
+   <div class="mua-nho">Mã đơn: <strong id="mua-ma">SKL</strong></div>
+  </div>
+  <div class="mua-qua" id="mua-qua" hidden>
+   <label for="mua-chon-qua">Quà mua 1 tặng 1 (đến hết 31/10/2026): chọn 1 skill lẻ khác</label>
+   <select id="mua-chon-qua"></select>
+   <p>Mã skill quà được thêm vào nội dung chuyển khoản. Chưa chọn thì anh/chị ghi tên skill quà khi nhắn Zalo cũng được.</p>
+  </div>
+  <div class="mua-qr">
+   <img id="mua-anh-qr" alt="Mã QR VietQR chuyển khoản tới MB, số tài khoản 15188888888, chủ tài khoản NGUYEN TUAN MINH" width="280" decoding="async">
+   <div class="du-phong" id="mua-du-phong" hidden>Không tải được ảnh mã QR. Anh/chị chuyển tay theo thông tin bên dưới và ghi đúng nội dung chuyển khoản.</div>
+   <p class="qr-ghi">Mở ứng dụng ngân hàng, chọn quét mã QR: số tiền và nội dung đã điền sẵn.</p>
+  </div>
+  <ul class="mua-tt">
+   <li><div><span class="nhan">Ngân hàng</span><span class="gt">MB (Ngân hàng TMCP Quân đội)</span></div></li>
+   <li><div><span class="nhan">Số tài khoản</span><span class="gt">15188888888</span></div><button type="button" class="nut-sao" data-sao="stk" aria-label="Sao chép số tài khoản">Sao chép</button></li>
+   <li><div><span class="nhan">Chủ tài khoản</span><span class="gt">NGUYEN TUAN MINH</span></div></li>
+   <li><div><span class="nhan">Số tiền</span><span class="gt" id="mua-tien">129.000đ</span></div><button type="button" class="nut-sao" data-sao="tien" aria-label="Sao chép số tiền">Sao chép</button></li>
+   <li><div><span class="nhan">Nội dung chuyển khoản</span><span class="gt gt-nd" id="mua-nd">SKL</span></div><button type="button" class="nut-sao" data-sao="nd" aria-label="Sao chép nội dung chuyển khoản">Sao chép</button></li>
+  </ul>
+  <p class="mua-canh">Nhập đúng nội dung chuyển khoản để được giao nhanh.</p>
+  <ul class="mua-luu">
+   <li>Sau khi xác nhận tiền vào, anh/chị nhận link tải + tệp cài nhấp đúp (Windows và Mac).</li>
+   <li>Cần tài khoản Claude trả phí riêng (từ khoảng 20 USD/tháng, anh/chị tự trả cho Anthropic; khoản này không nằm trong giá skill).</li>
+  </ul>
+  <a class="mua-xong" id="mua-da-ck" href="https://zalo.me/0963124791" target="_blank" rel="noopener">Tôi đã chuyển khoản</a>
+  <div role="status" aria-live="polite"><p class="mua-bao" id="mua-bao" hidden></p></div>
+  <p class="mua-nho">Chuyển nhầm số tiền hoặc nội dung? Nhắn Zalo <a href="https://zalo.me/0963124791" target="_blank" rel="noopener">0963124791</a> kèm ảnh biên lai để bên em xử lý. Trang không lưu và không gửi thông tin của anh/chị đi đâu.</p>
+ </div>
+</dialog>
+
+<script>
+(function () {
+ 'use strict';
+ // Giá theo kinh-doanh/bang-gia.json: SKILL-LE 129000, SKILL-GOI-10 299000
+ var GIA_LE = 129000, GIA_GOI = 299000;
+ var STK = '15188888888', CHU_TK = 'NGUYEN TUAN MINH';
+ var QR_GOC = 'https://img.vietqr.io/image/MB-' + STK + '-compact2.png';
+ // Khuyến mãi SKILL-MUA1TANG1: 10/10/2026 đến hết 31/10/2026, theo ngày trên máy khách
+ var KM_TU = new Date(2026, 9, 10), KM_HET = new Date(2026, 10, 1);
+ // BẢNG MÃ SKILL (in vào nội dung chuyển khoản để chủ tra)
+ var SKILL = {
+  'tra-loi-danh-gia-shop': ['S01', 'Trả lời đánh giá shop'],
+  'kich-ban-livestream-ban-hang': ['S02', 'Kịch bản livestream bán hàng'],
+  'tieu-de-seo-san-pham-hang-loat': ['S03', 'Tiêu đề SEO hàng loạt'],
+  'cham-soc-sau-mua': ['S04', 'Chăm sóc sau mua'],
+  'bao-cao-doanh-thu-tuan': ['S05', 'Báo cáo doanh thu tuần'],
+  'kich-ban-video-ngan-san-pham': ['S06', 'Kịch bản video ngắn sản phẩm'],
+  'phan-hoi-khieu-nai-doi-tra': ['S07', 'Phản hồi khiếu nại, đổi trả'],
+  'ten-va-mo-ta-combo-khuyen-mai': ['S08', 'Tên và mô tả combo khuyến mãi'],
+  'ke-hoach-flash-sale': ['S09', 'Kế hoạch flash sale'],
+  'mau-tin-nhan-chot-don': ['S10', 'Mẫu tin nhắn chốt đơn'],
+  'anh-bai-dang-mang-xa-hoi': ['A01', 'Ảnh bài đăng mạng xã hội'],
+  'carousel-kien-thuc': ['A02', 'Carousel kiến thức'],
+  'thumbnail-youtube': ['A03', 'Thumbnail YouTube'],
+  'infographic-quy-trinh': ['A04', 'Infographic quy trình'],
+  'banner-khuyen-mai-su-kien': ['A05', 'Banner khuyến mãi, sự kiện'],
+  'bo-nhan-dien-mini': ['A06', 'Bộ nhận diện mini'],
+  'prompt-boi-canh-san-pham': ['A07', 'Prompt bối cảnh sản phẩm'],
+  'prompt-anh-minh-hoa-bai-viet': ['A08', 'Prompt ảnh minh họa bài viết'],
+  'anh-trich-dan-chia-se': ['A09', 'Ảnh trích dẫn chia sẻ'],
+  'bang-gia-menu-dich-vu': ['A10', 'Bảng giá, menu dịch vụ'],
+  'video-anh-truot-san-pham': ['V01', 'Video ảnh trượt sản phẩm'],
+  'phu-de-tieng-viet-tu-file-loi': ['V02', 'Phụ đề tiếng Việt từ file lời'],
+  'chuan-hoa-video-da-nen-tang': ['V03', 'Chuẩn hóa video đa nền tảng'],
+  'mo-dau-ket-thuc-thuong-hieu': ['V04', 'Mở đầu, kết thúc thương hiệu'],
+  'video-chu-dong-kien-thuc': ['V05', 'Video chữ động kiến thức'],
+  'ke-hoach-quay-video-ngan': ['V06', 'Kế hoạch quay video ngắn'],
+  'kich-ban-video-dai-co-chuong': ['V07', 'Kịch bản video dài có chương'],
+  'prompt-video-ai-canh-quay': ['V08', 'Prompt video AI cảnh quay'],
+  'lam-sach-am-thanh-video': ['V09', 'Làm sạch âm thanh video'],
+  'video-so-sanh-truoc-sau': ['V10', 'Video so sánh trước sau']
+ };
+ var GOI = {
+  GSHOP: 'Gói Shop online · 10 skill',
+  GANH: 'Gói Tạo ảnh · 10 skill',
+  GVID: 'Gói Tạo video · 10 skill'
+ };
+ var NHOM = [['S', 'Gói Shop online'], ['A', 'Gói Tạo ảnh'], ['V', 'Gói Tạo video']];
+ var TEN_THEO_MA = {};
+ Object.keys(SKILL).forEach(function (k) { TEN_THEO_MA[SKILL[k][0]] = SKILL[k][1]; });
+
+ var $ = function (id) { return document.getElementById(id); };
+ var hop = $('hop-mua'), anh = $('mua-anh-qr'), duPhong = $('mua-du-phong'), khuQua = $('mua-qua'),
+  chonQua = $('mua-chon-qua'), bao = $('mua-bao');
+ if (!hop) return;
+ var dang = null, duoi = '', nutMo = null;
+
+ function tien(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ'; }
+ function trongKM() { var d = new Date(); return d >= KM_TU && d < KM_HET; }
+ function ngauNhien() {
+  var bc = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', s = '', a = [], i;
+  try { a = new Uint32Array(4); window.crypto.getRandomValues(a); }
+  catch (e) { for (i = 0; i < 4; i++) a[i] = Math.floor(Math.random() * 1e9); }
+  for (i = 0; i < 4; i++) s += bc.charAt(a[i] % bc.length);
+  return s;
+ }
+ // Nội dung CK = mã đơn: IN HOA không dấu, số, khoảng trắng; dài nhất "SKL S07 A03 X7K2" (16 ký tự, giới hạn 25)
+ function noiDung() {
+  var p = ['SKL', dang.ma];
+  if (dang.le && !khuQua.hidden && chonQua.value) p.push(chonQua.value);
+  p.push(duoi);
+  return p.join(' ').slice(0, 25);
+ }
+ function tenQua() { return (dang.le && !khuQua.hidden && chonQua.value) ? TEN_THEO_MA[chonQua.value] : ''; }
+
+ function capNhat() {
+  var nd = noiDung();
+  $('mua-ma').textContent = nd;
+  $('mua-nd').textContent = nd;
+  bao.hidden = true;
+  duPhong.hidden = true;
+  anh.hidden = false;
+  anh.alt = 'Mã QR VietQR chuyển khoản ' + tien(dang.gia) + ' tới MB, số tài khoản ' + STK + ', chủ tài khoản ' + CHU_TK + ', nội dung ' + nd;
+  anh.src = QR_GOC + '?amount=' + dang.gia + '&addInfo=' + encodeURIComponent(nd) + '&accountName=' + encodeURIComponent(CHU_TK);
+ }
+ anh.addEventListener('error', function () { anh.hidden = true; duPhong.hidden = false; });
+
+ function dungDanhSachQua() {
+  chonQua.innerHTML = '';
+  var o = document.createElement('option');
+  o.value = ''; o.textContent = 'Chọn skill quà';
+  chonQua.appendChild(o);
+  NHOM.forEach(function (n) {
+   var g = document.createElement('optgroup');
+   g.label = n[1];
+   Object.keys(SKILL).forEach(function (k) {
+    var m = SKILL[k][0];
+    if (m.charAt(0) !== n[0] || m === dang.ma) return;
+    var op = document.createElement('option');
+    op.value = m; op.textContent = SKILL[k][1] + ' (' + m + ')';
+    g.appendChild(op);
+   });
+   chonQua.appendChild(g);
+  });
+ }
+
+ function mo(nut) {
+  var loai = nut.getAttribute('data-mua');
+  if (loai === 'le') {
+   var li = nut.closest('li'), c = li && li.querySelector('code');
+   var slug = c ? c.textContent.trim() : '', s = SKILL[slug];
+   if (!s) return false;
+   dang = { le: true, ma: s[0], ten: 'Skill lẻ: ' + s[1] + ' (' + s[0] + ')', gia: GIA_LE };
+  } else if (GOI[loai]) {
+   dang = { le: false, ma: loai, ten: GOI[loai] + ' (' + loai + ')', gia: GIA_GOI };
+  } else { return false; }
+  $('mua-tieu-de').textContent = dang.le ? 'Mua skill lẻ bằng mã QR' : 'Mua gói 10 skill bằng mã QR';
+  $('mua-ten').textContent = dang.ten;
+  $('mua-gia').textContent = tien(dang.gia);
+  $('mua-tien').textContent = tien(dang.gia);
+  khuQua.hidden = !(dang.le && trongKM());
+  if (!khuQua.hidden) dungDanhSachQua();
+  duoi = ngauNhien();
+  capNhat();
+  nutMo = nut;
+  if (typeof hop.showModal === 'function') { if (!hop.open) hop.showModal(); }
+  else { hop.setAttribute('open', ''); }
+  hop.scrollTop = 0;
+  $('mua-tieu-de').focus();
+  return true;
+ }
+ function dong() {
+  if (typeof hop.close === 'function') { hop.close(); }
+  else { hop.removeAttribute('open'); traFocus(); }
+ }
+ function traFocus() { if (nutMo) { try { nutMo.focus(); } catch (e) {} } }
+ hop.addEventListener('close', traFocus);
+
+ document.addEventListener('click', function (e) {
+  var nut = e.target.closest ? e.target.closest('[data-mua]') : null;
+  if (nut && mo(nut)) e.preventDefault();
+ });
+ $('mua-dong').addEventListener('click', dong);
+ hop.addEventListener('click', function (e) { if (e.target === hop) dong(); });
+ document.addEventListener('keydown', function (e) {
+  if ((e.key === 'Escape' || e.key === 'Esc') && hop.hasAttribute('open') && typeof hop.showModal !== 'function') dong();
+ });
+ chonQua.addEventListener('change', capNhat);
+
+ // Sao chép: navigator.clipboard, dự phòng execCommand; lỗi thì báo chép tay
+ function chep(chuoi, xong) {
+  function cachCu() {
+   var ok = false;
+   try {
+    var t = document.createElement('textarea');
+    t.value = chuoi; t.setAttribute('readonly', '');
+    t.style.position = 'fixed'; t.style.top = '0'; t.style.opacity = '0';
+    hop.appendChild(t); t.select();
+    ok = document.execCommand('copy');
+    hop.removeChild(t);
+   } catch (e) { ok = false; }
+   xong(ok);
+  }
+  if (navigator.clipboard && window.isSecureContext) {
+   navigator.clipboard.writeText(chuoi).then(function () { xong(true); }, cachCu);
+  } else { cachCu(); }
+ }
+ Array.prototype.forEach.call(hop.querySelectorAll('[data-sao]'), function (b) {
+  b.addEventListener('click', function () {
+   var k = b.getAttribute('data-sao');
+   var v = k === 'stk' ? STK : (k === 'tien' ? String(dang.gia) : noiDung());
+   chep(v, function (ok) {
+    b.textContent = ok ? 'Đã chép' : 'Chép tay giúp em';
+    setTimeout(function () { b.textContent = 'Sao chép'; }, 2200);
+   });
+  });
+ });
+
+ $('mua-da-ck').addEventListener('click', function () {
+  var nd = noiDung(), q = tenQua();
+  var tin = 'Chào shop, tôi đã chuyển khoản ' + tien(dang.gia) + ' mua ' + dang.ten +
+   (q ? ', quà tặng: ' + q : '') + '. Mã đơn: ' + nd + '. Nhờ shop gửi link tải giúp tôi.';
+  var huongDan = 'Nhắn mã đơn ' + nd + ' cho shop, anh/chị nhận link tải trong giờ làm việc (8:00–22:00).';
+  chep(tin, function (ok) {
+   bao.textContent = huongDan + (ok
+    ? ' Tin nhắn mẫu đã được chép sẵn, anh/chị chỉ cần dán vào ô chat Zalo.'
+    : ' Trình duyệt không cho chép tự động, anh/chị gõ mã đơn ' + nd + ' vào Zalo giúp em.');
+   bao.hidden = false;
+  });
+ });
+})();
+</script>
 
 </body>
 </html>
